@@ -5,6 +5,7 @@
 				<tr>
 					<th>№ п/п</th>
 					<th
+						class="sortable"
 						:class="{
 							'up': sortFields.find(field => field.name === 'name').direction === 'up',
 							'down': sortFields.find(field => field.name === 'name').direction === 'down'
@@ -12,6 +13,7 @@
 						@click="sortBy('name')">Наименование
 					</th>
 					<th
+						class="sortable"
 						:class="{
 							'up': sortFields.find(field => field.name === 'phone').direction === 'up',
 							'down': sortFields.find(field => field.name === 'phone').direction === 'down'
@@ -19,6 +21,7 @@
 						@click="sortBy('phone')">Телефон
 					</th>
 					<th
+						class="sortable"
 						:class="{
 							'up': sortFields.find(field => field.name === 'email').direction === 'up',
 							'down': sortFields.find(field => field.name === 'email').direction === 'down'
@@ -26,6 +29,7 @@
 						@click="sortBy('email')">E-mail
 					</th>
 					<th
+						class="sortable"
 						:class="{
 							'up': sortFields.find(field => field.name === 'location').direction === 'up',
 							'down': sortFields.find(field => field.name === 'location').direction === 'down'
@@ -101,20 +105,22 @@ export default {
 		&__table {
 			th {
 				position: relative;
-				cursor: pointer;
 				user-select: none;
+			}
+			th.sortable {
+				cursor: pointer;
 				&::after {
-					content: '';
+					content: '\2195';
 					position: absolute;
 					right: 5px;
 				}
 			}
-			th.up {
+			th.sortable.up {
 				&::after {
 					content: '\2191';
 				}
 			}
-			th.down {
+			th.sortable.down {
 				&::after {
 					content: '\2193';
 				}
