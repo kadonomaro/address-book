@@ -1,15 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import contacts from '@/test/contacts.json';
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
+	state: {
+		contacts: contacts
   },
   mutations: {
   },
   actions: {
   },
-  modules: {
+	getters: {
+		getContacts(state) {
+			return state.contacts;
+		}
   }
 })

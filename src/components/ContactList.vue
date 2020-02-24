@@ -9,7 +9,7 @@
 					<th>Адрес</th>
 					<th>Тег</th>
 				</tr>
-				<tr v-for="contact in contacts" :key="contact.id">
+				<tr v-for="contact in getContacts" :key="contact.id">
 					<td>{{ contact.name }}</td>
 					<td>
 						<a :href="`tel:${contact.phone}`">{{ contact.phone }}</a>
@@ -26,15 +26,20 @@
 </template>
 
 <script>
-import contacts from '@/test/contacts.json';
 import '@/style/table.scss';
+import { mapGetters } from 'vuex';
 
 export default {
 	name: 'contact-list',
 	data() {
 		return {
-			contacts: contacts
+
 		}
+	},
+	computed: {
+		...mapGetters([
+			'getContacts'
+		])
 	}
 }
 </script>
