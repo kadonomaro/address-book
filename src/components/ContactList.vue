@@ -3,13 +3,15 @@
 		<table class="contact-list__table table">
 			<tbody>
 				<tr>
-					<th class="up" @click="sortBy('name')">Наименование</th>
+					<th>№ п/п</th>
+					<th @click="sortBy('name')">Наименование</th>
 					<th @click="sortBy('phone')">Телефон</th>
 					<th @click="sortBy('email')">E-mail</th>
 					<th @click="sortBy('location')">Адрес</th>
 					<th>Тег</th>
 				</tr>
-				<tr v-for="contact in getSortedContacts" :key="contact.id">
+				<tr v-for="(contact, index) in getSortedContacts" :key="contact.id">
+					<td>{{ index + 1 }}</td>
 					<td>{{ contact.name }}</td>
 					<td>
 						<a :href="`tel:${contact.phone}`">{{ contact.phone }}</a>
@@ -34,12 +36,13 @@ export default {
 	data() {
 		return {
 			sortProp: 'name',
-			sortDirection: 1 // 1 = asc, -1 = desc
+			sortDirection: 0
 		}
 	},
 	methods: {
 		sortBy(prop) {
-			this.sortDirection = this.sortDirection * -1;
+			// 1 = asc, -1 = desc
+			this.sortDirection = this.sortDirection === 0 ? this.sortDirection = 1: this.sortDirection *= -1 ;
 			this.sortProp = prop;
 		}
 	},
@@ -77,7 +80,7 @@ export default {
 			}
 			th.down {
 				&::after {
-					content: '\2193;';
+					content: '\2193';
 				}
 			}
 		}
