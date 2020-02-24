@@ -1,18 +1,24 @@
 {
   "name": "address-book",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./src/index.js",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon --watch "
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
   },
-  "author": "Denis Davydov <denis.afer@gmail.com>",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "core-js": "^3.6.4",
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.5",
+    "vuex": "^3.1.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "@vue/cli-plugin-babel": "^4.2.0",
+    "@vue/cli-plugin-router": "^4.2.0",
+    "@vue/cli-plugin-vuex": "^4.2.0",
+    "@vue/cli-service": "^4.2.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11"
   }
 }
