@@ -1,0 +1,51 @@
+[
+    {
+        "id": 1,
+        "name": "Казанова Елена Алексеевна",
+        "sex": "female",
+        "phone": 89649940000,
+        "email": "kazanova.e@gmail.com",
+        "location": "г. Москва, ул. Королева 35"
+    },
+    {
+        "id": 2,
+        "name": "Светлов Олег Алексеевич",
+        "sex": "male",
+        "phone": 89614540000,
+        "email": "svetlov@gmail.com",
+        "location": "г. Москва, ул. Нахимова 14"
+    },
+    {
+        "id": 3,
+        "name": "Иванова Тамара Олеговна",
+        "sex": "female",
+        "phone": 89649940100,
+        "email": "i.toma@gmail.com",
+        "location": "г. Москва, ул. Королева 25"
+    },
+    {
+        "id": 4,
+        "name": "Заозерова Дарья Александровна",
+        "sex": "female",
+        "phone": 89139940000,
+        "email": "zaozera@gmail.com",
+        "location": "г. Москва, ул. Ленина 35"
+    },
+    {
+        "id": 5,
+        "name": "Склёмин Дмитрий Игоревич",
+        "sex": "m",
+        "phone": 89346941200,
+        "email": "dimos@gmail.com",
+        "location": "г. Москва, ул. Титова 11"
+    },
+    {
+        "id": 6,
+        "name": "Фролова Анастасия Евгеньевна",
+        "sex": "female",
+        "phone": 89146910020,
+        "email": "frolla@gmail.com",
+        "location": "г. Новосибирск, ул. Климова 55"
+    }
+
+]
