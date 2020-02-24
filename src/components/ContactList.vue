@@ -3,10 +3,10 @@
 		<table class="contact-list__table table">
 			<tbody>
 				<tr>
-					<th @click="sort('name')">Наименование</th>
-					<th @click="sort('phone')">Телефон</th>
-					<th @click="sort('email')">E-mail</th>
-					<th @click="sort('location')">Адрес</th>
+					<th class="up" @click="sortBy('name')">Наименование</th>
+					<th @click="sortBy('phone')">Телефон</th>
+					<th @click="sortBy('email')">E-mail</th>
+					<th @click="sortBy('location')">Адрес</th>
 					<th>Тег</th>
 				</tr>
 				<tr v-for="contact in getSortedContacts" :key="contact.id">
@@ -34,14 +34,13 @@ export default {
 	data() {
 		return {
 			sortProp: 'name',
-			sortDirection: -1 // 1 = asc, -1 = desc
+			sortDirection: 1 // 1 = asc, -1 = desc
 		}
 	},
 	methods: {
-		sort(prop) {
+		sortBy(prop) {
 			this.sortDirection = this.sortDirection * -1;
 			this.sortProp = prop;
-			console.log(this.sortDirection);
 		}
 	},
 	computed: {
@@ -51,7 +50,7 @@ export default {
 		getSortedContacts() {
 			return this.getContacts.sort((a, b) => {
 				if(a[this.sortProp] < b[this.sortProp]) return -1 * this.sortDirection;
-				if(a[this.currentSort] > b[this.currentSort]) return 1 * this.sortDirection;
+				if(a[this.sortProp] > b[this.sortProp]) return 1 * this.sortDirection;
 			});
 		}
 	}
@@ -62,8 +61,24 @@ export default {
 	.contact-list {
 		&__table {
 			th {
+				position: relative;
 				cursor: pointer;
 				user-select: none;
+				&::after {
+					content: '';
+					position: absolute;
+					right: 5px;
+				}
+			}
+			th.up {
+				&::after {
+					content: '\2191';
+				}
+			}
+			th.down {
+				&::after {
+					content: '\2193;';
+				}
 			}
 		}
 	}
