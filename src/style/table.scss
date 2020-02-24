@@ -1,0 +1,22 @@
+.table {
+	margin: 0 auto;
+	border: 1px solid #303030;
+	border-collapse: collapse;
+	th,
+	td {
+		padding: 8px 12px;
+	}
+	th {
+		color: #ffffff;
+		background-color: #4e4e4e;
+		&:not(:last-child) {
+			border-right: 1px solid #ffffff;
+		}
+	}
+	td {
+		border-bottom: 1px solid #4e4e4e;
+		&:not(:last-child) {
+		border-right: 1px solid #4e4e4e;
+		}
+	}
+}

@@ -1,0 +1,10 @@
+body {
+	margin: 0;
+}
+a {
+	color: #3a47bd;
+	transition: color 0.2s ease-in;
+	&:hover {
+		color: darken($color: #3a47bd, $amount: 20%);
+	}
+}
