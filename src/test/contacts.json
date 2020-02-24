@@ -46,6 +46,54 @@
         "phone": 89146910020,
         "email": "frolla@gmail.com",
         "location": "г. Новосибирск, ул. Климова 55"
+    },
+    {
+        "id": 7,
+        "name": "Агафонова Анастасия Петровна",
+        "sex": "female",
+        "phone": 89234911020,
+        "email": "agaffo@mail.ru",
+        "location": "г. Новосибирск, ул. Петрова 12"
+    },
+    {
+        "id": 8,
+        "name": "Степанов Семен Петрович",
+        "sex": "male",
+        "phone": 89134697120,
+        "email": "superboy@yahoo.com",
+        "location": "г. Томск, ул. Темерязева 63"
+    },
+    {
+        "id": 9,
+        "name": "Гусько Дмитрий Александрович",
+        "sex": "male",
+        "phone": 89293651478,
+        "email": "gus@gmail.com",
+        "location": "г. Москва, ул. Ленина 115"
+    },
+    {
+        "id": 10,
+        "name": "Хайковская Алена Олеговна",
+        "sex": "female",
+        "phone": 89236547894,
+        "email": "kitty1990@gmail.com",
+        "location": "г. Новосибирск, ул. Мадурова 21"
+    },
+    {
+        "id": 11,
+        "name": "Климова Екатерина Сергеевна",
+        "sex": "female",
+        "phone": 89296649897,
+        "email": "klim.kate@mail.ru",
+        "location": "г. Москва, ул. Нахимова 27"
+    },
+    {
+        "id": 12,
+        "name": "Первак Андрей Ефимович",
+        "sex": "male",
+        "phone": 89616678923,
+        "email": "numberone@mail.ru",
+        "location": "г. Новосибирск, ул. Геблера 125"
     }
 
 ]

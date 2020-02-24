@@ -4,11 +4,35 @@
 			<tbody>
 				<tr>
 					<th>№ п/п</th>
-					<th @click="sortBy('name')">Наименование</th>
-					<th @click="sortBy('phone')">Телефон</th>
-					<th @click="sortBy('email')">E-mail</th>
-					<th @click="sortBy('location')">Адрес</th>
-					<th>Тег</th>
+					<th
+						:class="{
+							'up': sortFields.find(field => field.name === 'name').direction === 'up',
+							'down': sortFields.find(field => field.name === 'name').direction === 'down'
+						}"
+						@click="sortBy('name')">Наименование
+					</th>
+					<th
+						:class="{
+							'up': sortFields.find(field => field.name === 'phone').direction === 'up',
+							'down': sortFields.find(field => field.name === 'phone').direction === 'down'
+						}"
+						@click="sortBy('phone')">Телефон
+					</th>
+					<th
+						:class="{
+							'up': sortFields.find(field => field.name === 'email').direction === 'up',
+							'down': sortFields.find(field => field.name === 'email').direction === 'down'
+						}"
+						@click="sortBy('email')">E-mail
+					</th>
+					<th
+						:class="{
+							'up': sortFields.find(field => field.name === 'location').direction === 'up',
+							'down': sortFields.find(field => field.name === 'location').direction === 'down'
+						}"
+						@click="sortBy('location')">Адрес
+					</th>
+					<th>Теги</th>
 				</tr>
 				<tr v-for="(contact, index) in getSortedContacts" :key="contact.id">
 					<td>{{ index + 1 }}</td>
@@ -36,7 +60,13 @@ export default {
 	data() {
 		return {
 			sortProp: 'name',
-			sortDirection: 0
+			sortDirection: 0,
+			sortFields: [
+				{ name: 'name', direction: null },
+				{ name: 'phone', direction: null },
+				{ name: 'email', direction: null },
+				{ name: 'location', direction: null },
+			]
 		}
 	},
 	methods: {
@@ -44,6 +74,11 @@ export default {
 			// 1 = asc, -1 = desc
 			this.sortDirection = this.sortDirection === 0 ? this.sortDirection = 1: this.sortDirection *= -1 ;
 			this.sortProp = prop;
+
+			const field = this.sortFields.find((field) => {
+				return field.name === prop;
+			});
+			field.direction = this.sortDirection === 1 ? 'up' : 'down';
 		}
 	},
 	computed: {
@@ -62,6 +97,7 @@ export default {
 
 <style lang="scss">
 	.contact-list {
+		padding: 0 10px;
 		&__table {
 			th {
 				position: relative;
