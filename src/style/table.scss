@@ -5,6 +5,9 @@
 	th,
 	td {
 		padding: 8px 12px;
+		&:not(:last-child) {
+			border-right: 1px solid #cfcfcf;
+		}
 	}
 	th {
 		text-align: left;

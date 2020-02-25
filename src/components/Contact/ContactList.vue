@@ -1,5 +1,6 @@
 <template>
 	<div class="contact-list">
+		<smart-filter :input="getSortedContacts"/>
 		<table class="contact-list__table table">
 			<tbody>
 				<tr>
@@ -58,9 +59,13 @@
 <script>
 import '@/style/table.scss';
 import { mapGetters } from 'vuex';
+import SmartFilter from '@/components/SmartFilter.vue';
 
 export default {
 	name: 'contact-list',
+	components: {
+		SmartFilter
+	},
 	data() {
 		return {
 			sortProp: 'name',
