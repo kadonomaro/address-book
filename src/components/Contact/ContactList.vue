@@ -52,6 +52,13 @@
 						<a :href="`mailto:${contact.email}`">{{ contact.email }}</a>
 					</td>
 					<td>{{ contact.location }}</td>
+					<td>
+						<span
+							:class="{'tag': tag}"
+							v-for="(tag, index) in contact.tags"
+							:key="index"
+						>{{ tag }}</span>
+					</td>
 				</tr>
 				<tr>
 					<td v-if="!filteredData.length" colspan="6">Ничего не найдено</td>
