@@ -1,6 +1,6 @@
 <template>
 	<div class="contact-list">
-		<smart-filter :input-data="getSortedContacts"/>
+		<smart-filter :input-data="getSortedContacts" @filter="filterBy"/>
 		<table class="contact-list__table table">
 			<tbody>
 				<tr>
@@ -39,7 +39,7 @@
 					</th>
 					<th>Теги</th>
 				</tr>
-				<tr v-for="(contact, index) in getSortedContacts" :key="contact.id">
+				<tr v-for="(contact, index) in filteredData" :key="contact.id">
 					<td>{{ index + 1 }}</td>
 					<td>{{ contact.name }}</td>
 					<td>
@@ -75,7 +75,8 @@ export default {
 				{ name: 'phone', direction: null },
 				{ name: 'email', direction: null },
 				{ name: 'location', direction: null },
-			]
+			],
+			filteredData: []
 		}
 	},
 	methods: {
@@ -88,6 +89,9 @@ export default {
 				return field.name === prop;
 			});
 			field.direction = this.sortDirection === 1 ? 'up' : 'down';
+		},
+		filterBy(payload) {
+			this.filteredData = payload;
 		}
 	},
 	computed: {

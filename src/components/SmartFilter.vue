@@ -2,11 +2,20 @@
   <div class="smart-filter">
     <form class="smart-filter__form">
       <label class="smart-filter__label">
-        <input type="text" class="smart-filter__field" placeholder="Поиск" v-model="value" />
+        <input
+					type="text"
+					class="smart-filter__field"
+					placeholder="Поиск"
+					v-model.trim="value"
+				/>
       </label>
-      <button class="smart-filter__button" aria-label="close" @click.prevent="clear"></button>
+      <button
+				class="smart-filter__button"
+				aria-label="close"
+				v-if="value"
+				@click.prevent="clear"
+			></button>
     </form>
-					      {{ filteredData }}
   </div>
 </template>
 
@@ -23,25 +32,14 @@ export default {
     return {
       value: ""
     };
-  },
+	},
+ 	mounted() {
+		this.$emit('filter', this.filteredData);
+	},
   methods: {
 		clear() {
 			this.value = '';
-		},
-    searchItems() {
-      this.list.forEach(item => {
-        if (
-          item.title.toLowerCase().includes(this.searchValue.toLowerCase()) &&
-          this.searchValue &&
-          this.isOpen
-        ) {
-          this.filteredValues.push({
-            id: item.id,
-            title: item.title
-          });
-        }
-      });
-    }
+		}
   },
   computed: {
     filteredData() {
@@ -54,7 +52,12 @@ export default {
         );
       });
     }
-  }
+	},
+	watch: {
+		filteredData(val) {
+			this.$emit('filter', val);
+		}
+	}
 };
 </script>
 
