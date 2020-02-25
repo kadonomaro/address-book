@@ -1,6 +1,9 @@
 <template>
 	<div class="contact-list">
-		<smart-filter :input-data="getSortedContacts" @filter="filterBy"/>
+		<div class="contact-list__head">
+			<smart-filter :input-data="getSortedContacts" @filter="filterBy"/>
+		</div>
+
 		<table class="contact-list__table table">
 			<tbody>
 				<tr>
@@ -49,7 +52,9 @@
 						<a :href="`mailto:${contact.email}`">{{ contact.email }}</a>
 					</td>
 					<td>{{ contact.location }}</td>
-					<td></td>
+				</tr>
+				<tr>
+					<td v-if="!filteredData.length" colspan="6">Ничего не найдено</td>
 				</tr>
 			</tbody>
 		</table>
@@ -81,14 +86,16 @@ export default {
 	},
 	methods: {
 		sortBy(prop) {
-			// 1 = asc, -1 = desc
-			this.sortDirection = this.sortDirection === 0 ? this.sortDirection = 1: this.sortDirection *= -1 ;
-			this.sortProp = prop;
+			if (this.filteredData.length) {
+				// 1 = asc, -1 = desc
+				this.sortDirection = this.sortDirection === 0 ? this.sortDirection = 1: this.sortDirection *= -1 ;
+				this.sortProp = prop;
 
-			const field = this.sortFields.find((field) => {
-				return field.name === prop;
-			});
-			field.direction = this.sortDirection === 1 ? 'up' : 'down';
+				const field = this.sortFields.find((field) => {
+					return field.name === prop;
+				});
+				field.direction = this.sortDirection === 1 ? 'up' : 'down';
+			}
 		},
 		filterBy(payload) {
 			this.filteredData = payload;
@@ -111,6 +118,11 @@ export default {
 <style lang="scss">
 	.contact-list {
 		padding: 0 10px;
+		&__head {
+			padding: 15px 10px;
+			background-color: #cfcfcf;
+			border-bottom: 2px solid #ffffff;
+		}
 		&__table {
 			th {
 				position: relative;

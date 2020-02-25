@@ -64,9 +64,7 @@ export default {
 <style lang="scss">
 .smart-filter {
   position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 15px 10px;
+  max-width: 400px;
   &__label {
     position: relative;
   }
@@ -74,7 +72,7 @@ export default {
     width: 100%;
     padding: 7px 30px 7px 7px;
     font-size: 16px;
-    border: 2px solid #cfcfcf;
+    border: 2px solid #7c7c7c;
     box-sizing: border-box;
     transition: border-color 0.2s ease;
     outline: none;
