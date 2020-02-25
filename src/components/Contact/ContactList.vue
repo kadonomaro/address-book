@@ -1,6 +1,6 @@
 <template>
 	<div class="contact-list">
-		<smart-filter :input="getSortedContacts"/>
+		<smart-filter :input-data="getSortedContacts"/>
 		<table class="contact-list__table table">
 			<tbody>
 				<tr>
