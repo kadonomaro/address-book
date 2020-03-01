@@ -1,0 +1,25 @@
+@import '@/style/variables.scss';
+
+.contact-info {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	padding: 10px;
+	background-color: #ffffff;
+	border: 1px solid $border-color;
+	border-radius: 5px;
+	box-shadow: 0 3px 7px rgba($color: #000000, $alpha: 0.2);
+
+	.header {
+		display: flex;
+	}
+	.avatar {
+		margin-right: 10px;
+	}
+	.name,
+	.sex,
+	.age {
+		display: block;
+		margin-bottom: 5px;
+	}
+}

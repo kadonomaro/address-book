@@ -14,7 +14,7 @@
 							'up': sortFields.find(field => field.name === 'name').direction === 'up',
 							'down': sortFields.find(field => field.name === 'name').direction === 'down'
 						}"
-						@click="sortBy('name')">Наименование
+						@click="sortBy('name')">Имя
 					</th>
 					<th
 						class="sortable"
@@ -44,7 +44,7 @@
 				</tr>
 				<tr v-for="(contact, index) in filteredData" :key="contact.id">
 					<td>{{ index + 1 }}</td>
-					<td>{{ contact.name }}</td>
+					<td class="has-info" v-contact-info="contact">{{ contact.name }}</td>
 					<td>
 						<a :href="`tel:${contact.phone}`">{{ contact.phone | phone }}</a>
 					</td>
@@ -124,6 +124,7 @@ export default {
 
 <style lang="scss">
 	@import '@/style/variables.scss';
+	@import '@/style/contact-info.scss';
 
 	.contact-list {
 		max-width: 1600px;
@@ -143,10 +144,18 @@ export default {
 			}
 			th.sortable {
 				cursor: pointer;
+				transition: background-color 0.2s ease-in;
+				&:hover {
+					background-color: $background-color;
+				}
 				&::after {
 					content: '\2195';
 					position: absolute;
 					right: 5px;
+					top: 50%;
+					color: $main-color;
+					font-size: 18px;
+					transform: translateY(-50%);
 				}
 			}
 			th.sortable.up {
@@ -158,6 +167,9 @@ export default {
 				&::after {
 					content: '\2193';
 				}
+			}
+			td.has-info {
+				position: relative;
 			}
 		}
 	}
