@@ -4,7 +4,9 @@ body {
 a {
 	color: #3a47bd;
 	transition: color 0.2s ease-in;
+	text-decoration: none;
 	&:hover {
 		color: darken($color: #3a47bd, $amount: 20%);
+		text-decoration: underline;
 	}
 }

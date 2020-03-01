@@ -46,7 +46,7 @@
 					<td>{{ index + 1 }}</td>
 					<td>{{ contact.name }}</td>
 					<td>
-						<a :href="`tel:${contact.phone}`">{{ contact.phone }}</a>
+						<a :href="`tel:${contact.phone}`">{{ contact.phone | phone }}</a>
 					</td>
 					<td>
 						<a :href="`mailto:${contact.email}`">{{ contact.email }}</a>
