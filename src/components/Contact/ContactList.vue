@@ -123,12 +123,18 @@ export default {
 </script>
 
 <style lang="scss">
+	@import '@/style/variables.scss';
+
 	.contact-list {
-		padding: 0 10px;
+		max-width: 1600px;
+		margin: 0 auto;
+		padding: 20px 10px;
 		&__head {
-			padding: 15px 10px;
-			background-color: #cfcfcf;
-			border-bottom: 2px solid #ffffff;
+			margin-bottom: 15px;
+			padding: 20px 30px;
+			background-color: #ffffff;
+			border: 1px solid $border-color;
+			border-radius: 5px;
 		}
 		&__table {
 			th {

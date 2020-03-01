@@ -62,6 +62,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/style/variables.scss';
 .smart-filter {
   position: relative;
   max-width: 400px;
@@ -72,13 +73,15 @@ export default {
     width: 100%;
     padding: 7px 30px 7px 7px;
     font-size: 16px;
-    border: 2px solid #7c7c7c;
-    box-sizing: border-box;
+		border: 2px solid $main-color;
+		border-radius: 3px;
     transition: border-color 0.2s ease;
     outline: none;
+    box-sizing: border-box;
     &:hover,
     &:focus {
-      border-color: #4e4e4e;
+			border-color: #4e4e4e;
+			border-color: darken($color: $main-color, $amount: 20%);
     }
   }
   &__button {

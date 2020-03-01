@@ -1,28 +1,26 @@
+@import '@/style/variables.scss';
+
 .table {
 	margin: 0 auto;
 	width: 100%;
 	border-collapse: collapse;
+	background-color: #ffffff;
 	span.tag {
 		display: inline-block;
 		margin-right: 3px;
 		padding: 2px 5px;
+		color: #ffffff;
 		font-size: 14px;
-		background-color: #e4e4e4;
+		background-color: $main-color;
 		border-radius: 10px;
 	}
 	th,
 	td {
-		padding: 6px 10px;
-		&:not(:last-child) {
-			border-right: 1px solid #cfcfcf;
-		}
+		padding: 10px 14px;
+		border: 1px solid $border-color;
 	}
 	th {
 		text-align: left;
-		color: #ffffff;
-		background-color: #4e4e4e;
 	}
-	td {
-		border-bottom: 1px solid #7c7c7c;
-	}
+
 }
