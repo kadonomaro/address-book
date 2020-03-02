@@ -2,9 +2,10 @@
 
 .contact-info {
 	position: absolute;
+	z-index: 999;
 	top: 10px;
 	left: 10px;
-	padding: 10px;
+	padding: 15px;
 	background-color: #ffffff;
 	border: 1px solid $border-color;
 	border-radius: 5px;
@@ -13,7 +14,13 @@
 	.header {
 		display: flex;
 	}
+	.footer {
+		display: flex;
+		justify-content: center;
+	}
 	.avatar {
+		width: 80px;
+		height: 80px;
 		margin-right: 10px;
 	}
 	.name,
@@ -21,5 +28,22 @@
 	.age {
 		display: block;
 		margin-bottom: 5px;
+	}
+	.button {
+		width: 40px;
+		height: 40px;
+		margin: 0 10px;
+		border-radius: 50%;
+		border: none;
+		cursor: pointer;
+	}
+	.button.call {
+		background-color: #06bb00;
+	}
+	.button.send {
+		background-color: #2848ff;
+	}
+	.button.open {
+
 	}
 }

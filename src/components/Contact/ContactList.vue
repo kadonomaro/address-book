@@ -69,7 +69,6 @@
 </template>
 
 <script>
-import '@/style/table.scss';
 import { mapGetters } from 'vuex';
 import SmartFilter from '@/components/SmartFilter.vue';
 
@@ -124,6 +123,7 @@ export default {
 
 <style lang="scss">
 	@import '@/style/variables.scss';
+	@import '@/style/table.scss';
 	@import '@/style/contact-info.scss';
 
 	.contact-list {
