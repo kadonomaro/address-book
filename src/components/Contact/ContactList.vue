@@ -170,6 +170,7 @@ export default {
 			}
 			td.has-info {
 				position: relative;
+				cursor: pointer;
 			}
 		}
 	}

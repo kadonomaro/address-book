@@ -6,7 +6,7 @@ export default {
 		let isCreated = false;
 
 		el.addEventListener('mouseenter', createTooltip);
-		// el.addEventListener('mouseleave', removeTooltip);
+		el.addEventListener('mouseleave', removeTooltip);
 
 
     var s = JSON.stringify
@@ -34,8 +34,8 @@ export default {
 
 					</div>
 					<footer class="footer">
-						<button class="button call"></button>
-						<button class="button send"></button>
+						<a href="tel:${binding.value.phone}" class="button call"></a>
+						<a href="mailto:${binding.value.email}" class="button send"></a>
 						<button class="button open"></button>
 					</footer>
 				`
