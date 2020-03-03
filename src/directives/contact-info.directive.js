@@ -1,10 +1,12 @@
+import userDefaultAvatar from '@/assets/icons/user.png';
+
 export default {
 	bind: function (el, binding, vnode) {
-		let isCreated = false;
 		const contactInfo = document.createElement('div');
+		let isCreated = false;
 
 		el.addEventListener('mouseenter', createTooltip);
-		el.addEventListener('mouseleave', removeTooltip);
+		// el.addEventListener('mouseleave', removeTooltip);
 
 
     var s = JSON.stringify
@@ -20,12 +22,12 @@ export default {
 				contactInfo.innerHTML = `
 					<header class="header">
 						<div class="avatar">
-							<img src="https://via.placeholder.com/80" alt="${binding.value.name}">
+							<img src="${userDefaultAvatar}" alt="${binding.value.name}">
 						</div>
-						<div class="data">
-							<span class="name">Имя: ${binding.value.name}</span>
-							<span class="sex">Пол: ${binding.value.sex === 'male' ? 'мужской' : 'женский'}</span>
-							<span class="age">Возраст: ${binding.value.age}</span>
+						<div class="user">
+							<span class="name"><b>Имя:</b> ${binding.value.name}</span>
+							<span class="sex"><b>Пол:</b> ${binding.value.sex === 'male' ? 'мужской' : 'женский'}</span>
+							<span class="age"><b>Возраст:</b> ${binding.value.age}</span>
 						</div>
 					</header>
 					<div class="info">
@@ -37,16 +39,16 @@ export default {
 						<button class="button open"></button>
 					</footer>
 				`
-				// el.appendChild(contactInfo);
 				vnode.elm.appendChild(contactInfo);
+				el.querySelector('.button.open').addEventListener('click', function () {
+					vnode.context.$router.push({ path: `contact/${binding.value.id}` });
+				});
 				isCreated = true;
-				console.log(vnode);
 			}
 		}
 
 		function removeTooltip() {
 			if (isCreated) {
-				// el.removeChild(contactInfo);
 				vnode.elm.removeChild(contactInfo);
 				isCreated = false;
 			}
