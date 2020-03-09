@@ -1,5 +1,5 @@
 <template>
-  <section class="contact-item">
+  <section v-if="contact" class="contact-item">
     <div class="contact-item__inner">
 
       <header class="contact-item__head">
@@ -23,7 +23,7 @@
               {{ contact.sex === 'male' ? 'мужской' : 'женский' }}
             </li>
             <li class="user-info__item">
-              <b>Статус:</b>
+              <b>Статус: </b>
               <span
                 class="user-info__tag"
                 v-for="(tag, index) in contact.tags"
@@ -31,21 +31,17 @@
               >{{ tag }}{{ index !== contact.tags.length - 1 ? ', ' : '' }}</span>
             </li>
             <li class="user-info__item">
-              <b>Телефон:</b>
+              <b>Телефон: </b>
               <a :href="`tel:${contact.phone}`" class="user-info__link">{{ contact.phone | phone}}</a>
             </li>
             <li class="user-info__item">
-              <b>Электронная почта:</b>
+              <b>Электронная почта: </b>
               <a :href="`mailto:${contact.email}`" class="user-info__link">{{ contact.email }}</a>
             </li>
           </ul>
         </div>
 
-				<div class="contact-item__map">
-					<yandex-map :coords="coords" :zoom="10" :controls="['zoomControl']">
-						<ymap-marker :coords="coords" marker-id="123" :hint-content="contact.location" />
-					</yandex-map>
-				</div>
+				<contact-map :address="contact.location" />
 
       </div>
 
@@ -54,17 +50,20 @@
 </template>
 
 <script>
+import ContactMap from '@/components/Contact/ContactMap.vue';
 import { db } from "@/main";
 import avatar from "@/assets/icons/user.png";
 
 export default {
-  name: "contact-item",
+	name: "contact-item",
+	components: {
+		ContactMap,
+	},
   data() {
     return {
       id: this.$route.params.id,
       contact: null,
       avatar,
-      coords: [54.82896654088406, 39.831893822753904]
     };
   },
   mounted() {
@@ -111,13 +110,6 @@ export default {
   &__info {
 		padding: 0 20px;
 		margin-right: auto;
-	}
-	&__map {
-		width: 600px;
-		height: 400px;
-		.ymap-container {
-			height: 100%;
-		}
 	}
 }
 
