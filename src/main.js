@@ -9,6 +9,8 @@ import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/database'
 
+import YmapPlugin from 'vue-yandex-maps'
+
 import phoneFilter from '@/filters/phone.filter';
 import contactInfoDirective from '@/directives/contact-info.directive';
 
@@ -24,13 +26,24 @@ const firebaseDevConfig = {
   projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
   storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGE_SENDER_ID,
-  appId: '1:664834727086:web:a7dd48b4f891b8e38c213f',
+  appId: process.env.VUE_APP_FIREBASE_APP_ID,
 };
+
+
+const yMapSettings = {
+  apiKey: process.env.VUE_APP_YMAP_API_KEY,
+  lang: 'ru_RU',
+  coordorder: 'latlong',
+  version: '2.1'
+}
+
 
 firebase.initializeApp(firebaseDevConfig);
 const db = firebase.database();
 const auth = firebase.auth();
 export { db, auth };
+
+Vue.use(YmapPlugin, yMapSettings);
 
 new Vue({
   router,
