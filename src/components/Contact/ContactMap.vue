@@ -4,7 +4,7 @@
 			:coords="coords"
 			:zoom="12"
 			:controls="['zoomControl']"
-			>
+		>
       <ymap-marker :coords="coords" marker-id="123" :hint-content="address" />
     </yandex-map>
   </div>
@@ -41,7 +41,7 @@ export default {
     };
   },
   async mounted() {
-		this.getCoordByAddress('Москва');
+		this.getCoordByAddress(this.address);
   },
   methods: {
     async getCoordByAddress(address) {
