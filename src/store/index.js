@@ -34,14 +34,6 @@ export default new Vuex.Store({
 					});
 					state.commit('updateContacts', contacts);
 				});
-
-			// await db.collection('contacts')
-			// 	.get()
-			// 	.then((snapshot) => {
-			// 		snapshot.forEach((doc) => {
-			// 			console.log(doc);
-			// 		})
-			// 	})
 		}
   },
 	getters: {

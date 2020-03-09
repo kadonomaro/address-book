@@ -41,7 +41,7 @@ export default {
 				`
 				vnode.elm.appendChild(contactInfo);
 				el.querySelector('.button.open').addEventListener('click', function () {
-					vnode.context.$router.push({ path: `contact/${binding.value.id}` });
+					vnode.context.$router.push({ path: `contact/${binding.value.id}`, params: {id: binding.value.id} });
 				});
 				isCreated = true;
 			}
