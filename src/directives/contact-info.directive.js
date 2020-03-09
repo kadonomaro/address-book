@@ -16,8 +16,9 @@ export default {
     //   'argument: '   + s(binding.arg) + '<br>' +
 		//   'modifiers: '  + s(binding.modifiers) + '<br>'
 
-		function createTooltip() {
+		function createTooltip(evt) {
 			if (!isCreated) {
+				contactInfo.style.left = evt.offsetX + 'px';
 				contactInfo.classList.add('contact-info');
 				contactInfo.innerHTML = `
 					<header class="header">
@@ -39,18 +40,26 @@ export default {
 						<button class="button open" title="Подробнее"></button>
 					</footer>
 				`
+
 				vnode.elm.appendChild(contactInfo);
 				el.querySelector('.button.open').addEventListener('click', function () {
 					vnode.context.$router.push({ path: `contact/${binding.value.id}`, params: {id: binding.value.id} });
 				});
 				isCreated = true;
+
+				setTimeout(() => {
+					contactInfo.classList.add('fade-in');
+				}, 200);
 			}
 		}
 
 		function removeTooltip() {
 			if (isCreated) {
-				vnode.elm.removeChild(contactInfo);
-				isCreated = false;
+				contactInfo.classList.remove('fade-in');
+				setTimeout(() => {
+					vnode.elm.removeChild(contactInfo);
+					isCreated = false;
+				}, 200);
 			}
 		}
 	}
