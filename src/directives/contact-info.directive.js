@@ -34,9 +34,9 @@ export default {
 
 					</div>
 					<footer class="footer">
-						<a href="tel:${binding.value.phone}" class="button call"></a>
-						<a href="mailto:${binding.value.email}" class="button send"></a>
-						<button class="button open"></button>
+						<a href="tel:${binding.value.phone}" class="button call" title="Позвонить"></a>
+						<a href="mailto:${binding.value.email}" class="button send" title="Написать"></a>
+						<button class="button open" title="Подробнее"></button>
 					</footer>
 				`
 				vnode.elm.appendChild(contactInfo);
