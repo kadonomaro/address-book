@@ -90,6 +90,9 @@ export default {
 			filteredData: []
 		}
 	},
+	mounted(){
+		this.$store.dispatch('getContactsData');
+	},
 	methods: {
 		sortBy(prop) {
 			if (this.filteredData.length) {

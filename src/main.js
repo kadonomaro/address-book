@@ -7,6 +7,7 @@ import '@/style/common.scss'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
+import 'firebase/database'
 
 import phoneFilter from '@/filters/phone.filter';
 import contactInfoDirective from '@/directives/contact-info.directive';
@@ -27,10 +28,9 @@ const firebaseDevConfig = {
 };
 
 firebase.initializeApp(firebaseDevConfig);
-const db = firebase.firestore();
-const storage = firebase.storage();
+const db = firebase.database();
 const auth = firebase.auth();
-
+export { db, auth };
 
 new Vue({
   router,
