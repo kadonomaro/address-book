@@ -80,10 +80,7 @@
         <span>Добавить новый контакт</span>
       </template>
       <template v-slot:body>
-        <span>{{ Date.now().toString() }}</span>
-      </template>
-			<template v-slot:footer>
-        <span>{{ Date.now().toString() }}</span>
+        <add-contact-form />
       </template>
     </v-modal>
 
@@ -93,15 +90,17 @@
 <script>
 import { mapGetters } from 'vuex';
 import SmartFilter from '@/components/SmartFilter.vue';
-import VButton from '@/components/Blocks/VButton.vue';
-import VModal from '@/components/Blocks/VModal.vue';
+import vButton from '@/components/Blocks/vButton.vue';
+import vModal from '@/components/Blocks/vModal.vue';
+import AddContactForm from '@/components/Contact/AddContactForm.vue';
 
 export default {
 	name: 'contact-list',
 	components: {
 		SmartFilter,
-		VButton,
-		VModal
+		vButton,
+		vModal,
+		AddContactForm
 	},
 	data() {
 		return {

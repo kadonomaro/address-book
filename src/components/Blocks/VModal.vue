@@ -29,12 +29,12 @@
 </template>
 
 <script>
-import VButton from '@/components/Blocks/VButton.vue';
+import vButton from '@/components/Blocks/vButton.vue';
 
 export default {
   name: 'v-modal',
   components: {
-    VButton
+    vButton
   },
   methods: {
     close() {
@@ -85,7 +85,7 @@ export default {
     }
     &__body {
       position: relative;
-      padding: 10px 20px;
+      padding: 10px 10px;
       font-size: 16px;
     }
     &__footer {
