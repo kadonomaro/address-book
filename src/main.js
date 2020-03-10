@@ -13,9 +13,11 @@ import YmapPlugin from 'vue-yandex-maps'
 
 import phoneFilter from '@/filters/phone.filter';
 import contactInfoDirective from '@/directives/contact-info.directive';
+import escapeDirective from '@/directives/escape.directive';
 
 Vue.filter('phone', phoneFilter);
 Vue.directive('contact-info', contactInfoDirective);
+Vue.directive('escape', escapeDirective);
 
 Vue.config.productionTip = false
 

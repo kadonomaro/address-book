@@ -1,6 +1,6 @@
 <template>
   <transition name="modal-fade">
-    <div class="modal-overlay">
+    <div class="modal-overlay" @click="close" v-escape="close">
 
       <div class="modal">
 
