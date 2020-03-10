@@ -1,7 +1,7 @@
 <template>
 	<label class="input-label">
 		<span v-if="title" class="input-title">{{ title }}</span>
-		<input class="input" :type="type">
+		<input class="input" :type="type" v-autofocus="focus">
 	</label>
 </template>
 
@@ -17,6 +17,10 @@ export default {
 			type: String,
 			required: false,
 			default: 'text'
+		},
+		focus: {
+			type: Boolean,
+			required: false
 		}
 	}
 }

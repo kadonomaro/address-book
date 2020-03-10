@@ -1,6 +1,6 @@
 <template>
   <transition name="modal-fade">
-    <div class="modal-overlay" @click="close" v-escape="close">
+    <div class="modal-overlay" @click.self="close" v-escape="close">
 
       <div class="modal">
 
@@ -63,7 +63,8 @@ export default {
   }
 
   .modal {
-    position: relative;
+		position: relative;
+		z-index: 999;
     min-width: 320px;
     max-width: 600px;
 		background: #ffffff;

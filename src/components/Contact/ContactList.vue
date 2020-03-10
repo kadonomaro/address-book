@@ -72,7 +72,7 @@
 		</table>
 
 		<v-modal
-      v-show="addContactForm.isModalVisible"
+      v-if="addContactForm.isModalVisible"
       @close="addContactForm.isModalVisible = false"
       @action="addContact"
     >

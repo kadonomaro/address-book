@@ -2,7 +2,7 @@
 	<form action="" class="add-contact-form">
 
 		<div class="add-contact-form__group">
-			<v-input class="add-contact-form__field" :title="'Имя'" />
+			<v-input class="add-contact-form__field" :title="'Имя'" :focus="true" />
 			<v-input class="add-contact-form__field" :title="'Адрес'" />
 		</div>
 
@@ -12,12 +12,16 @@
 		</div>
 
 		<div class="add-contact-form__group">
+			<v-input class="add-contact-form__field" :title="'Возраст'" />
+			<v-input class="add-contact-form__field" :title="'Адрес'" />
+		</div>
+
+		<div class="add-contact-form__group">
 			<v-input-radio class="add-contact-form__field"
 				:title="'Пол'"
 				:name="'sex'"
 				:value="['мужской', 'женский']"
 			/>
-			<v-input class="add-contact-form__field" :title="'Адрес'" />
 		</div>
 
 	</form>
@@ -32,7 +36,21 @@ export default {
 	components: {
 		vInput,
 		vInputRadio
+	},
+	data() {
+		return {
+			form: {
+				name: '',
+				age: '',
+				sex: '',
+				location: '',
+				phone: '',
+				email: '',
+
+			}
+		}
 	}
+
 }
 </script>
 

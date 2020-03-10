@@ -30,6 +30,9 @@ export default {
 			type: Array,
 			required: true
 		}
+	},
+	methods: {
+
 	}
 }
 </script>
