@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import VNavigation from '@/components/Blocks/VNavigation.vue';
+import vNavigation from '@/components/Blocks/vNavigation.vue';
 
 export default {
 	components: {
-		VNavigation
+		vNavigation
 	}
 }
 </script>

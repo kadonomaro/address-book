@@ -2,18 +2,18 @@
 	<form action="" class="add-contact-form">
 
 		<div class="add-contact-form__group">
-			<v-input class="add-contact-form__field" :title="'Имя'" :focus="true" />
-			<v-input class="add-contact-form__field" :title="'Адрес'" />
+			<v-input class="add-contact-form__field" :title="'Имя'" :focus="true" @on-input="updateFormValue($event, 'name')" />
+			<v-input class="add-contact-form__field" :title="'Адрес'" @on-input="updateFormValue($event, 'location')" />
 		</div>
 
 		<div class="add-contact-form__group">
-			<v-input class="add-contact-form__field" :title="'Телефон'" :type="'tel'" />
-			<v-input class="add-contact-form__field" :title="'E-mail'" :type="'email'" />
+			<v-input class="add-contact-form__field" :title="'Телефон'" :type="'tel'" @on-input="updateFormValue($event, 'phone')" />
+			<v-input class="add-contact-form__field" :title="'E-mail'" :type="'email'" @on-input="updateFormValue($event, 'email')" />
 		</div>
 
 		<div class="add-contact-form__group">
-			<v-input class="add-contact-form__field" :title="'Возраст'" />
-			<v-input class="add-contact-form__field" :title="'Адрес'" />
+			<v-input class="add-contact-form__field" :title="'Возраст'" @on-input="updateFormValue($event, 'age')" />
+			<v-input class="add-contact-form__field" :title="'Статус'" @on-input="updateFormValue($event, 'tags')" />
 		</div>
 
 		<div class="add-contact-form__group">
@@ -21,6 +21,7 @@
 				:title="'Пол'"
 				:name="'sex'"
 				:value="['мужской', 'женский']"
+				@on-input="updateFormValue($event, 'sex')"
 			/>
 		</div>
 
@@ -46,8 +47,15 @@ export default {
 				location: '',
 				phone: '',
 				email: '',
+				tags: ''
 
 			}
+		}
+	},
+	methods: {
+		updateFormValue(value, input) {
+			this.form[input] = value;
+			this.$emit('update-info', this.form);
 		}
 	}
 

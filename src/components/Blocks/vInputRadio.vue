@@ -7,6 +7,7 @@
 					type="radio"
 					:name="name"
 					:value="val"
+					@change="onInputHandler"
 				>
 				<span class="input-radio-custom"></span>
 				<span class="input-radio-title">{{ val }}</span>
@@ -32,7 +33,9 @@ export default {
 		}
 	},
 	methods: {
-
+		onInputHandler(evt) {
+			this.$emit('on-input',evt.target.value)
+		}
 	}
 }
 </script>
@@ -60,6 +63,9 @@ export default {
 		height: 1px !important;
 		width: 1px !important;
 		overflow: hidden;
+		&:focus ~ .input-radio-custom {
+			border-color: $main-color;
+		}
 		&:checked ~ .input-radio-custom::before {
 			opacity: 1;
 		}
@@ -71,7 +77,7 @@ export default {
 		height: 18px;
 		margin-right: 5px;
 		border-radius: 50%;
-		border: 2px solid $main-color;
+		border: 2px solid $border-color;
 		&::before {
 			content: '';
 			position: absolute;

@@ -5,7 +5,7 @@
 			<v-button
 				:text="'Добавить'"
 				:has-icon="true"
-				@on-click="addContactForm.isModalVisible = true;"
+				@on-click="isModalVisible = true;"
 			/>
 		</div>
 
@@ -72,9 +72,10 @@
 		</table>
 
 		<v-modal
-      v-if="addContactForm.isModalVisible"
-      @close="addContactForm.isModalVisible = false"
+      v-if="isModalVisible"
+      @close="isModalVisible = false"
       @action="addContact"
+			@update-info="newContactInfo"
     >
       <template v-slot:header>
         <span>Добавить новый контакт</span>
@@ -113,10 +114,8 @@ export default {
 				{ name: 'location', direction: null },
 			],
 			filteredData: [],
-
-			addContactForm: {
-				isModalVisible: false,
-			}
+			isModalVisible: false,
+			contactForm: {}
 
 		}
 	},
@@ -139,8 +138,11 @@ export default {
 		filterBy(payload) {
 			this.filteredData = payload;
 		},
+		newContactInfo(info) {
+			console.log(info);
+		},
 		addContact() {
-			this.addContactForm.isModalVisible = false;
+			this.isModalVisible = false;
 			console.log('Контакт добавлен');
 		}
 	},

@@ -1,7 +1,12 @@
 <template>
 	<label class="input-label">
 		<span v-if="title" class="input-title">{{ title }}</span>
-		<input class="input" :type="type" v-autofocus="focus">
+		<input
+			class="input"
+			:type="type"
+			v-autofocus="focus"
+			@change="onInputHandler"
+		>
 	</label>
 </template>
 
@@ -21,6 +26,11 @@ export default {
 		focus: {
 			type: Boolean,
 			required: false
+		}
+	},
+	methods: {
+		onInputHandler(evt) {
+			this.$emit('on-input',evt.target.value)
 		}
 	}
 }
