@@ -2,6 +2,7 @@
 	<div class="contact-list">
 		<div class="contact-list__head">
 			<smart-filter :input-data="getSortedContacts" @filter="filterBy"/>
+			<v-button :text="'Добавить'" :has-icon="true" />
 		</div>
 
 		<table class="contact-list__table table">
@@ -61,7 +62,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td v-if="!filteredData.length" colspan="6">Ничего не найдено</td>
+					<td v-if="!filteredData.length && getContacts.length" colspan="6">Ничего не найдено</td>
 				</tr>
 			</tbody>
 		</table>
@@ -71,11 +72,13 @@
 <script>
 import { mapGetters } from 'vuex';
 import SmartFilter from '@/components/SmartFilter.vue';
+import VButton from '@/components/Blocks/VButton.vue';
 
 export default {
 	name: 'contact-list',
 	components: {
-		SmartFilter
+		SmartFilter,
+		VButton
 	},
 	data() {
 		return {
@@ -134,6 +137,8 @@ export default {
 		margin: 0 auto;
 		padding: 20px 10px;
 		&__head {
+			display: flex;
+			justify-content: space-between;
 			margin-bottom: 15px;
 			padding: 20px 30px;
 			background-color: #ffffff;
