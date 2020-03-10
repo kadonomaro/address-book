@@ -8,6 +8,7 @@
 					:name="name"
 					:value="val"
 				>
+				<span class="input-radio-custom"></span>
 				<span class="input-radio-title">{{ val }}</span>
 			</label>
 	</label>
@@ -37,10 +38,50 @@ export default {
 	@import '@/style/variables.scss';
 
 	.input-radio-label {
-
+		display: inline-flex;
+		align-items: center;
+		margin-bottom: 5px;
+		margin-right: 5px;
+		cursor: pointer;
 	}
 	.input-radio-title {
-		// display: block;
+		font-size: 14px;
+		color: $text-color-light;
+	}
+	.input-radio {
+		position: absolute !important;
+		clip: rect(1px 1px 1px 1px);
+		clip: rect(1px, 1px, 1px, 1px);
+		padding:0 !important;
+		border:0 !important;
+		height: 1px !important;
+		width: 1px !important;
+		overflow: hidden;
+		&:checked ~ .input-radio-custom::before {
+			opacity: 1;
+		}
+	}
+	.input-radio-custom {
+		position: relative;
+		display: block;
+		width: 18px;
+		height: 18px;
+		margin-right: 5px;
+		border-radius: 50%;
+		border: 2px solid $main-color;
+		&::before {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 12px;
+			height: 12px;
+			background-color: $main-color;
+			transform: translate(-50%, -50%);
+			border-radius: inherit;
+			opacity: 0;
+			transition: opacity 0.1s ease-in;
+		}
 	}
 
 </style>
