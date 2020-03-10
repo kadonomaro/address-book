@@ -171,7 +171,7 @@ export default {
 		&__head {
 			display: flex;
 			justify-content: space-between;
-			margin-bottom: 15px;
+			margin-bottom: 20px;
 			padding: 20px 30px;
 			background-color: #ffffff;
 			border: 1px solid $border-color;
