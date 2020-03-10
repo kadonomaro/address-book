@@ -38,12 +38,16 @@ export default {
 	}
 	.input {
 		width: 100%;
-    padding: 7px;
+		padding: 5px 8px;
+		color: $text-color;
     font-size: 16px;
-		border: 2px solid $main-color;
+		border: 2px solid $border-color;
 		border-radius: 3px;
     transition: border-color 0.2s ease;
     outline: none;
 		box-sizing: border-box;
+		&:focus {
+			border-color: $main-color;
+		}
 	}
 </style>
