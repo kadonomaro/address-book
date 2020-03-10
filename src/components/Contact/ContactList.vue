@@ -82,6 +82,9 @@
       <template v-slot:body>
         <span>{{ Date.now().toString() }}</span>
       </template>
+			<template v-slot:footer>
+        <span>{{ Date.now().toString() }}</span>
+      </template>
     </v-modal>
 
 	</div>
