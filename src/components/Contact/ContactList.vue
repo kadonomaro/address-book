@@ -2,7 +2,11 @@
 	<div class="contact-list">
 		<div class="contact-list__head">
 			<smart-filter :input-data="getSortedContacts" @filter="filterBy"/>
-			<v-button :text="'Добавить'" :has-icon="true" />
+			<v-button
+				:text="'Добавить'"
+				:has-icon="true"
+				@on-click="addContactForm.isModalVisible = true;"
+			/>
 		</div>
 
 		<table class="contact-list__table table">
@@ -66,6 +70,20 @@
 				</tr>
 			</tbody>
 		</table>
+
+		<v-modal
+      v-show="addContactForm.isModalVisible"
+      @close="addContactForm.isModalVisible = false"
+      @action="addContact"
+    >
+      <template v-slot:header>
+        <span>Добавить новый контакт</span>
+      </template>
+      <template v-slot:body>
+        <span>{{ Date.now().toString() }}</span>
+      </template>
+    </v-modal>
+
 	</div>
 </template>
 
@@ -73,12 +91,14 @@
 import { mapGetters } from 'vuex';
 import SmartFilter from '@/components/SmartFilter.vue';
 import VButton from '@/components/Blocks/VButton.vue';
+import VModal from '@/components/Blocks/VModal.vue';
 
 export default {
 	name: 'contact-list',
 	components: {
 		SmartFilter,
-		VButton
+		VButton,
+		VModal
 	},
 	data() {
 		return {
@@ -90,7 +110,12 @@ export default {
 				{ name: 'email', direction: null },
 				{ name: 'location', direction: null },
 			],
-			filteredData: []
+			filteredData: [],
+
+			addContactForm: {
+				isModalVisible: false,
+			}
+
 		}
 	},
 	mounted(){
@@ -111,6 +136,10 @@ export default {
 		},
 		filterBy(payload) {
 			this.filteredData = payload;
+		},
+		addContact() {
+			this.addContactForm.isModalVisible = false;
+			console.log('Контакт добавлен');
 		}
 	},
 	computed: {
