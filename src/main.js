@@ -34,6 +34,17 @@ const firebaseDevConfig = {
 };
 
 
+const firebaseProdConfig = {
+  apiKey: 'AIzaSyBSgWzG-knX-jAFJ_oCmsGLJgvvY8lXfmE',
+  authDomain: 'address-book-2020.firebaseapp.com',
+  databaseURL: 'https://address-book-2020.firebaseio.com',
+  projectId: 'address-book-2020',
+  storageBucket: 'address-book-2020.appspot.com',
+  messagingSenderId: '1085721217560',
+  appId: '9997739f-f8c2-4371-ab19-02877c805d38',
+};
+
+
 const yMapSettings = {
   apiKey: process.env.VUE_APP_YMAP_API_KEY,
   lang: 'ru_RU',
@@ -42,7 +53,7 @@ const yMapSettings = {
 }
 
 
-firebase.initializeApp(firebaseDevConfig);
+firebase.initializeApp(process.env.NODE_ENV === 'production' ? firebaseProdConfig : firebaseDevConfig);
 const db = firebase.database();
 const auth = firebase.auth();
 export { db, auth };
