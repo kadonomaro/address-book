@@ -47,7 +47,7 @@
 					</th>
 					<th>Теги</th>
 				</tr>
-				<tr v-for="(contact, index) in filteredData" :key="contact.id">
+				<tr v-for="(contact, index) in items" :key="contact.id">
 					<td>{{ index + 1 }}</td>
 					<td class="has-info" v-contact-info="contact">{{ contact.name }}</td>
 					<td>
@@ -70,6 +70,17 @@
 				</tr>
 			</tbody>
 		</table>
+
+    <paginate
+      v-if="filteredData.length > pageSize"
+      v-model="page"
+      :page-count="pageCount"
+      :page-range="pageRange"
+      :click-handler="pageChangeHandler"
+      :prev-text="'Назад'"
+      :next-text="'Вперед'"
+      :container-class="'paginate'">
+    </paginate>
 
 		<v-modal
       v-if="isModalVisible"
@@ -96,6 +107,7 @@ import vButton from '@/components/Blocks/vButton.vue';
 import vModal from '@/components/Blocks/vModal.vue';
 import AddContactForm from '@/components/Contact/AddContactForm.vue';
 import vPreloader from '@/components/vPreloader.vue';
+import paginationMixin from '@/mixins/pagination.mixin';
 
 export default {
 	name: 'contact-list',
@@ -106,6 +118,7 @@ export default {
 		AddContactForm,
 		vPreloader
 	},
+	mixins: [paginationMixin],
 	data() {
 		return {
 			sortProp: 'name',
@@ -159,6 +172,11 @@ export default {
 				if(a[this.sortProp] < b[this.sortProp]) return -1 * this.sortDirection;
 				if(a[this.sortProp] > b[this.sortProp]) return 1 * this.sortDirection;
 			});
+		}
+	},
+	watch: {
+		filteredData(value) {
+			this.setupPagination(value);
 		}
 	}
 }

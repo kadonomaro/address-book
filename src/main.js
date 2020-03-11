@@ -1,15 +1,16 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import '@/style/common.scss'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import '@/style/common.scss';
 
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/auth'
-import 'firebase/database'
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/database';
 
-import YmapPlugin from 'vue-yandex-maps'
+import YmapPlugin from 'vue-yandex-maps';
+import Paginate from 'vuejs-paginate';
 
 import phoneFilter from '@/filters/phone.filter';
 import contactInfoDirective from '@/directives/contact-info.directive';
@@ -21,7 +22,7 @@ Vue.directive('contact-info', contactInfoDirective);
 Vue.directive('escape', escapeDirective);
 Vue.directive('autofocus', autofocusDirective);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 const firebaseDevConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
@@ -46,11 +47,11 @@ const firebaseProdConfig = {
 
 
 const yMapSettings = {
-  apiKey: process.env.VUE_APP_YMAP_API_KEY,
-  lang: 'ru_RU',
-  coordorder: 'latlong',
-  version: '2.1'
-}
+	apiKey: process.env.VUE_APP_YMAP_API_KEY,
+	lang: 'ru_RU',
+	coordorder: 'latlong',
+	version: '2.1'
+};
 
 
 firebase.initializeApp(process.env.NODE_ENV === 'production' ? firebaseProdConfig : firebaseDevConfig);
@@ -59,6 +60,7 @@ const auth = firebase.auth();
 export { db, auth };
 
 Vue.use(YmapPlugin, yMapSettings);
+Vue.component('paginate', Paginate);
 
 new Vue({
   router,
