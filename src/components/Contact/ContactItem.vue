@@ -72,8 +72,8 @@ export default {
   methods: {
     async getContactById(id) {
       await db
-        .ref("contacts/" + id)
-        .once("value")
+        .ref('contacts/' + id)
+        .once('value')
         .then(snapshot => {
           this.contact = snapshot.val();
         });

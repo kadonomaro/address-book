@@ -55,7 +55,9 @@ export default {
 	methods: {
 		updateFormValue(value, input) {
 			if (input === 'tags') {
-				value = value.replace(/\s/g, '').split(',');
+				value = value.split(',').map((val) => {
+					return val.trim();
+				});
 			}
 			this.form[input] = value;
 			this.$emit('update-info', this.form);

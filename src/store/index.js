@@ -11,6 +11,9 @@ export default new Vuex.Store({
 	mutations: {
 		updateContacts(state, contacts) {
 			state.contacts = contacts;
+		},
+		addContact(state, contact) {
+			state.contacts.push(contact);
 		}
   },
 	actions: {
@@ -28,9 +31,9 @@ export default new Vuex.Store({
 		},
 		async addNewContact(state, contact) {
 			await db.ref('contacts')
-				.child(Date.now().toString())
+				.child(contact.id)
 				.update(contact);
-
+			state.commit('addContact', contact);
 		}
   },
 	getters: {
