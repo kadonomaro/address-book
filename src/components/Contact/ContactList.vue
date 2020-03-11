@@ -77,9 +77,9 @@
       :page-count="pageCount"
       :page-range="pageRange"
       :click-handler="pageChangeHandler"
-      :prev-text="'Назад'"
-      :next-text="'Вперед'"
-      :container-class="'paginate'">
+      :prev-text="'<'"
+      :next-text="'>'"
+      :container-class="'pagination'">
     </paginate>
 
 		<v-modal
@@ -186,6 +186,7 @@ export default {
 	@import '@/style/variables.scss';
 	@import '@/style/table.scss';
 	@import '@/style/contact-info.scss';
+	@import '@/style/pagination.scss';
 
 	.contact-list {
 		max-width: 1600px;
@@ -201,6 +202,7 @@ export default {
 			border-radius: 5px;
 		}
 		&__table {
+			margin-bottom: 20px;
 			th {
 				position: relative;
 				user-select: none;

@@ -1,0 +1,37 @@
+@import '@/style/variables.scss';
+
+.pagination {
+	display: inline-flex;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border: 2px solid $main-color;
+	border-radius: 3px;
+	li.active > a {
+		color: #ffffff;
+		background-color: $main-color;
+		text-decoration: none;
+	}
+	li.disabled {
+		opacity: 0.5;
+		& > a {
+			background-color: $border-color;
+			cursor: default;
+			&:hover {
+				color: $main-color;
+			}
+		}
+	}
+	a {
+		display: block;
+		padding: 4px 12px;
+		background-color: #ffffff;
+		transition: color 0.2s ease-in, background-color 0.2s ease-in;
+		user-select: none;
+		&:hover {
+			color: #ffffff;
+			background-color: $main-color;
+			text-decoration: none;
+		}
+	}
+}
