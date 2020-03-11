@@ -26,7 +26,7 @@ export default {
 		focus: {
 			type: Boolean,
 			required: false
-		}
+		},
 	},
 	methods: {
 		onInputHandler(evt) {

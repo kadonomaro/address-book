@@ -15,11 +15,6 @@
 
         <footer class="modal__footer">
           <slot name="footer"></slot>
-					<v-button
-							style="margin-left: 10px;"
-              :text="'ОК'"
-              @on-click="confirm"
-          />
         </footer>
 
       </div>
@@ -39,9 +34,6 @@ export default {
   methods: {
     close() {
       this.$emit('close');
-    },
-    confirm() {
-      this.$emit('confirm');
     }
   },
 };

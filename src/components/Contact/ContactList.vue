@@ -85,13 +85,15 @@
 		<v-modal
       v-if="isModalVisible"
       @close="isModalVisible = false"
-      @confirm="addContact"
     >
       <template v-slot:header>
         <span>Добавить новый контакт</span>
       </template>
       <template v-slot:body>
         <add-contact-form @update-info="newContactInfo" />
+      </template>
+			<template v-slot:footer>
+        <v-button style="margin-left: 10px;" :text="'ОК'" @on-click="addContact"/>
       </template>
     </v-modal>
 
@@ -161,7 +163,7 @@ export default {
 			this.isModalVisible = false;
 			Object.assign(this.contactForm, {id: Date.now().toString()});
 			this.$store.dispatch('addNewContact', this.contactForm);
-		}
+		},
 	},
 	computed: {
 		...mapGetters([

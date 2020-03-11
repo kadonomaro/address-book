@@ -25,11 +25,12 @@ export default {
 		align-items: center;
 		max-width: 240px;
 		&__image {
-			width: 100px;
+			width: 120px;
 			flex-shrink: 0;
 			background-image: url('~@/assets/logo.svg');
 			background-repeat: no-repeat;
 			background-size: contain;
+			background-position: center;
 			&::before {
 				content: '';
 				display: block;
