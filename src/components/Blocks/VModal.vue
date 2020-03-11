@@ -3,7 +3,6 @@
     <div class="modal-overlay" @click.self="close" v-escape="close">
 
       <div class="modal">
-
         <header class="modal__header">
           <slot name="header"></slot>
           <button class="modal__button modal__button--close" @click="close" aria-label="Close modal"></button>
@@ -16,7 +15,6 @@
         <footer class="modal__footer">
           <slot name="footer"></slot>
         </footer>
-
       </div>
 
     </div>

@@ -46,7 +46,16 @@ export default {
 			color: #ffffff;
 			background-color: $main-color;
 		}
-
+		&:hover:disabled,
+		&:focus:disabled {
+			color: $border-color;
+			background-color: #ffffff;
+		}
+		&:disabled {
+			color: $border-color;
+			border-color: $border-color;
+			cursor: default;
+		}
 	}
 	.v-button.has-icon {
 		position: relative;

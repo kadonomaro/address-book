@@ -93,7 +93,7 @@
         <add-contact-form @update-info="newContactInfo" />
       </template>
 			<template v-slot:footer>
-        <v-button style="margin-left: 10px;" :text="'ОК'" @on-click="addContact"/>
+        <v-button :text="'ОК'" :disabled="isValidContactForm" @on-click="addContact"/>
       </template>
     </v-modal>
 
@@ -174,6 +174,9 @@ export default {
 				if(a[this.sortProp] < b[this.sortProp]) return -1 * this.sortDirection;
 				if(a[this.sortProp] > b[this.sortProp]) return 1 * this.sortDirection;
 			});
+		},
+		isValidContactForm() {
+			return this.contactForm.name ? false : true
 		}
 	},
 	watch: {
