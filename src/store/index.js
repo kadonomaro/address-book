@@ -34,6 +34,13 @@ export default new Vuex.Store({
 					});
 					state.commit('updateContacts', contacts);
 				});
+		},
+		async addNewContact(state, contact) {
+			console.log(contact);
+
+			await db.ref('contacts')
+				.update(contact);
+
 		}
   },
 	getters: {

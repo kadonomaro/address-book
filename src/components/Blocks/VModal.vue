@@ -18,7 +18,7 @@
 					<v-button
 							style="margin-left: 10px;"
               :text="'ОК'"
-              @on-click="action"
+              @on-click="confirm"
           />
         </footer>
 
@@ -40,8 +40,8 @@ export default {
     close() {
       this.$emit('close');
     },
-    action() {
-      this.$emit('action');
+    confirm() {
+      this.$emit('confirm');
     }
   },
 };

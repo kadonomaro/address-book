@@ -74,14 +74,13 @@
 		<v-modal
       v-if="isModalVisible"
       @close="isModalVisible = false"
-      @action="addContact"
-			@update-info="newContactInfo"
+      @confirm="addContact"
     >
       <template v-slot:header>
         <span>Добавить новый контакт</span>
       </template>
       <template v-slot:body>
-        <add-contact-form />
+        <add-contact-form @update-info="newContactInfo" />
       </template>
     </v-modal>
 
@@ -139,11 +138,12 @@ export default {
 			this.filteredData = payload;
 		},
 		newContactInfo(info) {
-			console.log(info);
+			this.contactForm = info;
 		},
 		addContact() {
 			this.isModalVisible = false;
-			console.log('Контакт добавлен');
+			Object.assign(this.contactForm, {id: Date.now().toString()});
+			this.$store.dispatch('addNewContact', this.contactForm);
 		}
 	},
 	computed: {
