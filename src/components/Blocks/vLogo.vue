@@ -23,21 +23,23 @@ export default {
 	.logo {
 		display: flex;
 		align-items: center;
-		max-width: 200px;
-		padding: 5px;
-		border: 1px solid $text-color;
-		border-radius: 3px;
+		max-width: 240px;
 		&__image {
-			width: 50px;
-			height: 50px;
+			width: 100px;
 			flex-shrink: 0;
-			margin-right: 10px;
-			background-image: url('https://via.placeholder.com/50');
-			border-radius: 50%;
+			background-image: url('~@/assets/logo.svg');
+			background-repeat: no-repeat;
+			background-size: contain;
+			&::before {
+				content: '';
+				display: block;
+				padding-bottom: 65%;
+			}
 		}
 		&__text {
 			display: block;
 			color: $text-color;
+			font-size: 14px;
 		}
 	}
 	.logo--light {

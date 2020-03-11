@@ -27,7 +27,7 @@ export default {
 						</div>
 						<div class="contact-info__user">
 							<span class="name"><b>Имя:</b> ${binding.value.name}</span>
-							<span class="sex"><b>Пол:</b> ${binding.value.sex === 'male' ? 'мужской' : 'женский'}</span>
+							<span class="sex"><b>Пол:</b> ${binding.value.sex}</span>
 							<span class="age"><b>Возраст:</b> ${binding.value.age}</span>
 						</div>
 					</header>
