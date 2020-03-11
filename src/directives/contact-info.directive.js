@@ -21,20 +21,20 @@ export default {
 				contactInfo.style.left = evt.offsetX + 'px';
 				contactInfo.classList.add('contact-info');
 				contactInfo.innerHTML = `
-					<header class="header">
-						<div class="avatar">
+					<header class="contact-info__header">
+						<div class="contact-info__avatar">
 							<img src="${userDefaultAvatar}" alt="${binding.value.name}">
 						</div>
-						<div class="user">
+						<div class="contact-info__user">
 							<span class="name"><b>Имя:</b> ${binding.value.name}</span>
 							<span class="sex"><b>Пол:</b> ${binding.value.sex === 'male' ? 'мужской' : 'женский'}</span>
 							<span class="age"><b>Возраст:</b> ${binding.value.age}</span>
 						</div>
 					</header>
-					<div class="info">
+					<div class="contact-info__info">
 
 					</div>
-					<footer class="footer">
+					<footer class="contact-info__footer">
 						<a href="tel:${binding.value.phone}" class="button call" title="Позвонить"></a>
 						<a href="mailto:${binding.value.email}" class="button send" title="Написать"></a>
 						<button class="button open" title="Подробнее"></button>

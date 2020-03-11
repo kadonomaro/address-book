@@ -1,7 +1,15 @@
 <template>
 	<footer class="footer">
 		<div class="footer__inner">
-			<v-logo :theme="'light'" />
+			<v-logo class="footer__logo" :theme="'light'" />
+			<ul class="footer__list">
+				<li class="footer__item">
+					<router-link class="footer__link" to="/">Главная</router-link>
+				</li>
+				<li class="footer__item">
+					<router-link class="footer__link" to="/about">О нас</router-link>
+				</li>
+			</ul>
 		</div>
 	</footer>
 </template>
@@ -25,6 +33,22 @@ export default {
 		background-color: $main-color;
 		&__inner {
 			display: flex;
+			align-items: center;
+		}
+		&__logo {
+			margin-right: auto;
+		}
+		&__list {
+			display: flex;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		&__item {
+			padding: 0 10px;
+		}
+		&__link {
+			color: #ffffff;
 		}
 	}
 </style>
