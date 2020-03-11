@@ -20,25 +20,15 @@ export default new Vuex.Store({
 				.once('value')
 				.then((snapshot) => {
 					snapshot.forEach((child) => {
-						const contact = {
-							id: child.val().id,
-							age: child.val().age,
-							email: child.val().email,
-							location: child.val().location,
-							name: child.val().name,
-							phone: child.val().phone,
-							sex: child.val().sex,
-							tags: child.val().tags
-						}
+						const contact = child.val();
 						contacts.push(contact);
 					});
 					state.commit('updateContacts', contacts);
 				});
 		},
 		async addNewContact(state, contact) {
-			console.log(contact);
-
 			await db.ref('contacts')
+				.child(Date.now().toString())
 				.update(contact);
 
 		}
