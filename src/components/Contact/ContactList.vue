@@ -84,6 +84,8 @@
       </template>
     </v-modal>
 
+		<v-preloader v-if="!getContacts.length" :width="60" :height="60" />
+
 	</div>
 </template>
 
@@ -93,6 +95,7 @@ import SmartFilter from '@/components/SmartFilter.vue';
 import vButton from '@/components/Blocks/vButton.vue';
 import vModal from '@/components/Blocks/vModal.vue';
 import AddContactForm from '@/components/Contact/AddContactForm.vue';
+import vPreloader from '@/components/vPreloader.vue';
 
 export default {
 	name: 'contact-list',
@@ -100,7 +103,8 @@ export default {
 		SmartFilter,
 		vButton,
 		vModal,
-		AddContactForm
+		AddContactForm,
+		vPreloader
 	},
 	data() {
 		return {
