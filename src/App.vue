@@ -2,15 +2,18 @@
   <div id="app">
 		<v-navigation />
     <router-view/>
+		<v-footer />
   </div>
 </template>
 
 <script>
 import vNavigation from '@/components/Blocks/vNavigation.vue';
+import vFooter from '@/components/Blocks/vFooter.vue';
 
 export default {
 	components: {
-		vNavigation
+		vNavigation,
+		vFooter
 	}
 }
 </script>
