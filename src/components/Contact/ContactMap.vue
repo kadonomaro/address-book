@@ -41,12 +41,22 @@ export default {
     };
   },
   async mounted() {
-		this.getCoordByAddress(this.address);
+		this.getCoordByAddress(this.address)
+			.then((response) => {
+				return response.response;
+			})
+			.then((position) => {
+				const searchCoords = position.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
+				this.coords = searchCoords.reverse();
+			})
   },
   methods: {
     async getCoordByAddress(address) {
-			const geocode = await fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=${process.env.VUE_APP_YMAP_API_KEY}&geocode=${address}`);
-			console.log(geocode);
+			const response = await fetch(
+				`https://geocode-maps.yandex.ru/1.x/?format=json&apikey=${process.env.VUE_APP_YMAP_API_KEY}&geocode=${address}`
+			);
+			const data = await response.json();
+			return data;
 		},
   }
 };

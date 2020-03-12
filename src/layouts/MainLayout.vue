@@ -11,8 +11,10 @@ export default {
 </script>
 
 <style lang="scss">
+	@import '@/style/variables.scss';
+
 	.main-layout {
 		flex-grow: 1;
+		background-color: $background-color;
 	}
-
 </style>

@@ -14,10 +14,3 @@ export default {
 	},
 }
 </script>
-
-<style lang="scss">
-	@import '@/style/variables.scss';
-	.home {
-		background-color: $background-color;
-	}
-</style>

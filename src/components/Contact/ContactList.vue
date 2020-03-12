@@ -77,6 +77,7 @@
       :page-count="pageCount"
       :page-range="pageRange"
       :click-handler="pageChangeHandler"
+			:margin-pages="marginPages"
       :prev-text="'<'"
       :next-text="'>'"
       :container-class="'pagination'">
@@ -107,8 +108,8 @@ import { mapGetters } from 'vuex';
 import SmartFilter from '@/components/SmartFilter.vue';
 import vButton from '@/components/Blocks/vButton.vue';
 import vModal from '@/components/Blocks/vModal.vue';
-import AddContactForm from '@/components/Contact/AddContactForm.vue';
 import vPreloader from '@/components/vPreloader.vue';
+import AddContactForm from '@/components/Contact/AddContactForm.vue';
 import paginationMixin from '@/mixins/pagination.mixin';
 
 export default {
@@ -134,7 +135,6 @@ export default {
 			filteredData: [],
 			isModalVisible: false,
 			contactForm: {}
-
 		}
 	},
 	mounted(){
@@ -176,7 +176,7 @@ export default {
 			});
 		},
 		isValidContactForm() {
-			return this.contactForm.name ? false : true
+			return this.contactForm.name ? false : true;
 		}
 	},
 	watch: {

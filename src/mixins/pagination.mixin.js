@@ -4,7 +4,8 @@ export default {
       page: +this.$route.query.page || 1,
       pageSize: 15,
       pageRange: 1,
-      pageCount: 0,
+			pageCount: 0,
+			marginPages: 3,
       allItems: [],
       items: []
     };
