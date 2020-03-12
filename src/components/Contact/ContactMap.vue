@@ -5,7 +5,7 @@
 			<div v-if="coords.length" class="contact-map" >
 				<yandex-map
 					:coords="coords"
-					:zoom="12"
+					:zoom="14"
 					:controls="['zoomControl']"
 					@map-was-initialized="init = true"
 				>

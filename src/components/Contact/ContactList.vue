@@ -61,8 +61,13 @@
 				</tr>
 				<tr v-for="(contact, index) in items" :key="contact.id">
 					<td>
-						{{ index + 1 }}
-						<input type="checkbox" :value="contact.id" v-model="contactsIdList">
+						<div class="cell-inner">
+							<span class="title">{{ index + 1 }}</span>
+							<label class="custom-checkbox">
+								<input class="custom-checkbox__input visually-hidden" type="checkbox" :value="contact.id" v-model="contactsIdList">
+								<span class="custom-checkbox__input-custom"></span>
+							</label>
+						</div>
 					</td>
 					<td class="has-info" v-contact-info="contact">{{ contact.name }}</td>
 					<td>
@@ -215,6 +220,7 @@ export default {
 	@import '@/style/table.scss';
 	@import '@/style/contact-info.scss';
 	@import '@/style/pagination.scss';
+	@import '@/style/checkbox.scss';
 
 	.contact-list {
 		max-width: 1600px;
@@ -265,9 +271,12 @@ export default {
 				position: relative;
 				cursor: pointer;
 			}
-		}
-		&__controls {
-
+			td {
+				&:first-child {
+					width: 70px;
+					box-sizing: border-box;
+				}
+			}
 		}
 	}
 </style>

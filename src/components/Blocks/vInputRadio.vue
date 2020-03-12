@@ -3,7 +3,7 @@
 			<span v-if="title" class="input-title">{{ title }}</span>
 			<label v-for="(val, index) in value" :key="index" class="input-radio-label">
 				<input
-					class="input-radio"
+					class="input-radio visually-hidden"
 					type="radio"
 					:name="name"
 					:value="val"
@@ -55,14 +55,6 @@ export default {
 		color: $text-color-light;
 	}
 	.input-radio {
-		position: absolute !important;
-		clip: rect(1px 1px 1px 1px);
-		clip: rect(1px, 1px, 1px, 1px);
-		padding:0 !important;
-		border:0 !important;
-		height: 1px !important;
-		width: 1px !important;
-		overflow: hidden;
 		&:focus ~ .input-radio-custom {
 			border-color: $main-color;
 		}
