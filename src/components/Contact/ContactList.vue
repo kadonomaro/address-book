@@ -11,7 +11,7 @@
 				/>
 				<v-button
 					style="margin-left:10px"
-					v-if="idList.length"
+					v-if="contactsIdList.length"
 					:text="'Удалить'"
 					:has-icon="true"
 					:icon="'minus'"
@@ -60,7 +60,10 @@
 					<th>Теги</th>
 				</tr>
 				<tr v-for="(contact, index) in items" :key="contact.id">
-					<td>{{ index + 1 }} <input type="checkbox" :value="contact.id" v-model="idList"> </td>
+					<td>
+						{{ index + 1 }}
+						<input type="checkbox" :value="contact.id" v-model="contactsIdList">
+					</td>
 					<td class="has-info" v-contact-info="contact">{{ contact.name }}</td>
 					<td>
 						<a :href="`tel:${contact.phone}`">{{ contact.phone | phone }}</a>
@@ -82,11 +85,6 @@
 				</tr>
 			</tbody>
 		</table>
-
-
-		<div v-if="idList.length" class="contact-list__controls">
-			{{ idList }}
-		</div>
 
 
     <paginate
@@ -155,7 +153,7 @@ export default {
 			filteredData: [],
 			isModalVisible: false,
 			contactForm: {},
-			idList: []
+			contactsIdList: []
 		}
 	},
 	mounted(){
@@ -186,8 +184,8 @@ export default {
 			this.$store.dispatch('addNewContact', this.contactForm);
 		},
 		deleteContacts() {
-			this.$store.dispatch('deleteContacts', this.idList);
-			this.idList.length = 0;
+			this.$store.dispatch('deleteContacts', this.contactsIdList);
+			this.contactsIdList.length = 0;
 		}
 	},
 	computed: {

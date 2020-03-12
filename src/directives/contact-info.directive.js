@@ -57,8 +57,10 @@ export default {
 			if (isCreated) {
 				contactInfo.classList.remove('fade-in');
 				setTimeout(() => {
-					vnode.elm.removeChild(contactInfo);
-					isCreated = false;
+					if ([...vnode.elm.children].includes(contactInfo)) {
+						vnode.elm.removeChild(contactInfo);
+						isCreated = false;
+					}
 				}, 200);
 			}
 		}

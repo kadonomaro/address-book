@@ -42,14 +42,14 @@ export default new Vuex.Store({
 			state.commit('addContact', contact);
 		},
 		deleteContacts(state, contactIdList) {
-			contactIdList.forEach((contact) => {
+			contactIdList.forEach((contactId) => {
 				db.ref('contacts')
-					.child(contact)
+					.child(contactId)
 					.remove()
 					.catch((error) => {
 						console.warn('Контакт не существует');
 					})
-				state.commit('removeContact', contact);
+				state.commit('removeContact', contactId);
 			});
 		}
   },
