@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-map" :style="{ width: width + 'px', height: height + 'px' }">
+  <div v-if="coords.length" class="contact-map" :style="{ width: width + 'px', height: height + 'px' }">
     <yandex-map
 			:coords="coords"
 			:zoom="12"
@@ -7,6 +7,7 @@
 		>
       <ymap-marker :coords="coords" marker-id="123" :hint-content="address" />
     </yandex-map>
+		<span class="contact-map__address">{{ address }}</span>
   </div>
 </template>
 
@@ -37,7 +38,7 @@ export default {
   },
   data() {
     return {
-      coords: [54.82896654088406, 39.831893822753904]
+      coords: []
     };
   },
   async mounted() {
@@ -48,7 +49,7 @@ export default {
 			.then((position) => {
 				const searchCoords = position.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
 				this.coords = searchCoords.reverse();
-			})
+			});
   },
   methods: {
     async getCoordByAddress(address) {
@@ -67,5 +68,10 @@ export default {
   .ymap-container {
     height: 100%;
   }
+	&__address {
+		display: block;
+		margin: 10px 0;
+		text-align: center;
+	}
 }
 </style>

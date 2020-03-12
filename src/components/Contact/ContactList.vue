@@ -1,13 +1,25 @@
 <template>
 	<div class="contact-list">
 		<div class="contact-list__head">
+
 			<smart-filter :input-data="getSortedContacts" @filter="filterBy"/>
-			<v-button
-				:text="'Добавить'"
-				:has-icon="true"
-				@on-click="isModalVisible = true;"
-			/>
+			<div class="contact-list__controls">
+				<v-button
+					:text="'Добавить'"
+					:has-icon="true"
+					@on-click="isModalVisible = true;"
+				/>
+				<v-button
+					style="margin-left:10px"
+					v-if="idList.length"
+					:text="'Удалить'"
+					:has-icon="true"
+					:icon="'minus'"
+					@on-click="deleteContacts"
+				/>
+			</div>
 		</div>
+
 
 		<table class="contact-list__table table">
 			<tbody>
@@ -48,7 +60,7 @@
 					<th>Теги</th>
 				</tr>
 				<tr v-for="(contact, index) in items" :key="contact.id">
-					<td>{{ index + 1 }}</td>
+					<td>{{ index + 1 }} <input type="checkbox" :value="contact.id" v-model="idList"> </td>
 					<td class="has-info" v-contact-info="contact">{{ contact.name }}</td>
 					<td>
 						<a :href="`tel:${contact.phone}`">{{ contact.phone | phone }}</a>
@@ -71,6 +83,12 @@
 			</tbody>
 		</table>
 
+
+		<div v-if="idList.length" class="contact-list__controls">
+			{{ idList }}
+		</div>
+
+
     <paginate
       v-if="filteredData.length > pageSize"
       v-model="page"
@@ -82,6 +100,7 @@
       :next-text="'>'"
       :container-class="'pagination'">
     </paginate>
+
 
 		<v-modal
       v-if="isModalVisible"
@@ -97,6 +116,7 @@
         <v-button :text="'ОК'" :disabled="isValidContactForm" @on-click="addContact"/>
       </template>
     </v-modal>
+
 
 		<v-preloader v-if="!getContacts.length" :width="60" :height="60" />
 
@@ -134,7 +154,8 @@ export default {
 			],
 			filteredData: [],
 			isModalVisible: false,
-			contactForm: {}
+			contactForm: {},
+			idList: []
 		}
 	},
 	mounted(){
@@ -164,6 +185,11 @@ export default {
 			Object.assign(this.contactForm, {id: Date.now().toString()});
 			this.$store.dispatch('addNewContact', this.contactForm);
 		},
+		deleteContacts() {
+			this.idList.forEach(id => {
+				console.log('contact deleted ' + id);
+			});
+		}
 	},
 	computed: {
 		...mapGetters([
@@ -242,6 +268,9 @@ export default {
 				position: relative;
 				cursor: pointer;
 			}
+		}
+		&__controls {
+
 		}
 	}
 </style>

@@ -20,7 +20,7 @@
             </li>
             <li class="user-info__item">
               <b>Пол:</b>
-              {{ contact.sex === 'male' ? 'мужской' : 'женский' }}
+              {{ contact.sex }}
             </li>
             <li class="user-info__item">
               <b>Статус: </b>

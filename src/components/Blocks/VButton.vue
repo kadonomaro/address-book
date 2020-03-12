@@ -1,7 +1,7 @@
 <template>
 	<button
 		class="v-button"
-		:class="{'has-icon': hasIcon}"
+		:class="className"
 		@click="onClickHandler"
 	>{{ text }}
 	</button>
@@ -18,11 +18,24 @@ export default {
 		hasIcon: {
 			type: Boolean,
 			required: false
+		},
+		icon: {
+			type: String,
+			required: false
 		}
 	},
 	methods: {
 		onClickHandler() {
 			this.$emit('on-click');
+		}
+	},
+	computed: {
+		className() {
+			let classList = [];
+			this.hasIcon ? classList.push('has-icon') : false;
+			this.icon ? classList.push(this.icon) : false;
+
+			return classList;
 		}
 	}
 }
@@ -77,5 +90,13 @@ export default {
 			transform: translateY(-50%);
 			transition: background-image 0.2s;
 		}
+	}
+	.v-button.has-icon.minus {
+		&:hover::before,
+		&:focus::before {
+			background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' fill='%23fff'%3E%3Cpath d='m256 512c-141.164062 0-256-114.835938-256-256s114.835938-256 256-256 256 114.835938 256 256-114.835938 256-256 256zm0-480c-123.519531 0-224 100.480469-224 224s100.480469 224 224 224 224-100.480469 224-224-100.480469-224-224-224zm0 0'/%3E%3Cpath d='m368 272h-224c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h224c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0'/%3E%3C/svg%3E");
+		}
+		&::before {
+			background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg' fill='%233baeda'%3E%3Cpath d='m256 512c-141.164062 0-256-114.835938-256-256s114.835938-256 256-256 256 114.835938 256 256-114.835938 256-256 256zm0-480c-123.519531 0-224 100.480469-224 224s100.480469 224 224 224 224-100.480469 224-224-100.480469-224-224-224zm0 0'/%3E%3Cpath d='m368 272h-224c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h224c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0'/%3E%3C/svg%3E");		}
 	}
 </style>
