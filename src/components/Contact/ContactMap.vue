@@ -1,14 +1,25 @@
 <template>
-  <div v-if="coords.length" class="contact-map" :style="{ width: width + 'px', height: height + 'px' }">
-    <yandex-map
-			:coords="coords"
-			:zoom="12"
-			:controls="['zoomControl']"
-		>
-      <ymap-marker :coords="coords" marker-id="123" :hint-content="address" />
-    </yandex-map>
-		<span class="contact-map__address">{{ address }}</span>
-  </div>
+	<div id="map" :style="{ width: width + 'px', height: height + 'px' }">
+
+		<transition name="fade">
+			<div v-if="coords.length" class="contact-map" >
+				<yandex-map
+					:coords="coords"
+					:zoom="12"
+					:controls="['zoomControl']"
+					@map-was-initialized="init = true"
+				>
+					<ymap-marker :coords="coords" marker-id="123" :hint-content="address" />
+				</yandex-map>
+				<span class="contact-map__address">{{ address }}</span>
+			</div>
+		</transition>
+
+		<transition name="fade">
+			<div v-if="!init" class="contact-map-preloader"></div>
+		</transition>
+
+	</div>
 </template>
 
 <script>
@@ -38,7 +49,8 @@ export default {
   },
   data() {
     return {
-      coords: []
+			coords: [],
+			init: false
     };
   },
   async mounted() {
@@ -58,20 +70,45 @@ export default {
 			);
 			const data = await response.json();
 			return data;
-		},
+		}
   }
 };
 </script>
 
 <style lang="scss">
-.contact-map {
-  .ymap-container {
-    height: 100%;
-  }
-	&__address {
-		display: block;
-		margin: 10px 0;
-		text-align: center;
+	#map {
+		position: relative;
 	}
-}
+	.contact-map {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		.ymap-container {
+			height: 100%;
+		}
+		&__address {
+			display: block;
+			margin: 10px 0;
+			text-align: center;
+		}
+	}
+	.contact-map-preloader {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-image: url('~@/assets/yandex-maps-logo.jpg');
+		background-size: cover;
+		background-position: center;
+	}
+
+	.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+	}
+	.fade-enter, .fade-leave-to {
+		opacity: 0;
+	}
 </style>
