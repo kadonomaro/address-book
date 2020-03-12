@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ContactList from '@/components/Contact/ContactList.vue'
+import ContactList from '@/components/Contact/ContactList.vue';
 
 export default {
   name: 'Home',

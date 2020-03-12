@@ -1,21 +1,24 @@
 <template>
   <div id="app">
-		<v-navigation />
-		<main-layout />
-		<v-footer />
+		<component :is="layout">
+			<router-view/>
+		</component>
   </div>
 </template>
 
 <script>
 import MainLayout from '@/layouts/MainLayout.vue';
-import vNavigation from '@/components/Blocks/vNavigation.vue';
-import vFooter from '@/components/Blocks/vFooter.vue';
+import AuthLayout from '@/layouts/AuthLayout.vue';
 
 export default {
 	components: {
-		vNavigation,
-		vFooter,
-		MainLayout
+		MainLayout,
+		AuthLayout
+	},
+	computed: {
+		layout() {
+			return (this.$route.meta.layout || 'main') + '-layout';
+		}
 	}
 }
 </script>
