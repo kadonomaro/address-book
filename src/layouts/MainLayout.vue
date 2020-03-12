@@ -1,9 +1,9 @@
 <template>
-	<main class="main-layout">
+	<div class="main-layout">
 		<v-navigation />
 		<router-view/>
 		<v-footer />
-	</main>
+	</div>
 </template>
 
 <script>
@@ -23,7 +23,9 @@ export default {
 	@import '@/style/variables.scss';
 
 	.main-layout {
-		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
 		background-color: $background-color;
 	}
 </style>

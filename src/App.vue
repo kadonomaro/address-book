@@ -24,14 +24,11 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-  color: #303030;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
+	#app {
+		height: 100%;
+		color: #303030;
+		font-family: Roboto, Helvetica, Arial, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
 </style>

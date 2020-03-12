@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <main class="home">
 		<contact-list />
-  </div>
+  </main>
 </template>
 
 <script>
@@ -14,3 +14,9 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss">
+	.home {
+		flex-grow: 1;
+	}
+</style>
