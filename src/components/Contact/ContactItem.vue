@@ -41,7 +41,7 @@
           </ul>
         </div>
 
-				<contact-map :address="contact.location" />
+				<contact-map v-if="contact.location" :address="contact.location" />
 
       </div>
 

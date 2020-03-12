@@ -186,9 +186,8 @@ export default {
 			this.$store.dispatch('addNewContact', this.contactForm);
 		},
 		deleteContacts() {
-			this.idList.forEach(id => {
-				console.log('contact deleted ' + id);
-			});
+			this.$store.dispatch('deleteContacts', this.idList);
+			this.idList.length = 0;
 		}
 	},
 	computed: {

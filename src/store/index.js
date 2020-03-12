@@ -14,6 +14,12 @@ export default new Vuex.Store({
 		},
 		addContact(state, contact) {
 			state.contacts.push(contact);
+		},
+		removeContact(state, contact) {
+			const contactIndex = state.contacts.map((contact) => {
+				return contact.id;
+			}).indexOf(contact);
+			state.contacts.splice(contactIndex, 1);
 		}
   },
 	actions: {
@@ -32,8 +38,19 @@ export default new Vuex.Store({
 		async addNewContact(state, contact) {
 			await db.ref('contacts')
 				.child(contact.id)
-				.update(contact);
+				.update(contact)
 			state.commit('addContact', contact);
+		},
+		deleteContacts(state, contactIdList) {
+			contactIdList.forEach((contact) => {
+				db.ref('contacts')
+					.child(contact)
+					.remove()
+					.catch((error) => {
+						console.warn('Контакт не существует');
+					})
+				state.commit('removeContact', contact);
+			});
 		}
   },
 	getters: {
