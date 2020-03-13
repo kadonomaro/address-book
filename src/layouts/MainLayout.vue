@@ -1,12 +1,13 @@
 <template>
 	<div class="main-layout">
-		<v-navigation />
+		<v-header />
 		<router-view/>
 		<v-footer />
 	</div>
 </template>
 
 <script>
+import vHeader from '@/components/Blocks/vHeader.vue';
 import vNavigation from '@/components/Blocks/vNavigation.vue';
 import vFooter from '@/components/Blocks/vFooter.vue';
 
@@ -14,7 +15,8 @@ export default {
 	name: 'main-layout',
 	components: {
 		vNavigation,
-		vFooter
+		vFooter,
+		vHeader
 	}
 }
 </script>

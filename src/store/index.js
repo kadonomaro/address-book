@@ -8,7 +8,6 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		contacts: [],
-		userId: '',
 		user: {
 			id: null,
 			name: '',
@@ -104,6 +103,9 @@ export default new Vuex.Store({
 	getters: {
 		getContacts(state) {
 			return state.contacts;
+		},
+		getUserInfo(state) {
+			return state.user
 		}
   }
 })

@@ -24,11 +24,6 @@ export default {
 @import '@/style/variables.scss';
 
 	.navigation {
-		position: relative;
-		padding: 20px 30px;
-		color: #ffffff;
-		background-color: $main-color;
-		box-shadow: 0 4px 5px rgba($color: #a1afbf, $alpha: 0.7);
 		&__list {
 			display: flex;
 			margin: 0;
