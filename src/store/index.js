@@ -8,7 +8,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		contacts: [],
-		userId: ''
+		userId: '',
+		user: {
+			id: null,
+			name: '',
+			email: ''
+		}
   },
 	mutations: {
 		updateContacts(state, contacts) {
@@ -22,6 +27,11 @@ export default new Vuex.Store({
 				return contact.id;
 			}).indexOf(contact);
 			state.contacts.splice(contactIndex, 1);
+		},
+
+		setUserInfo(state, data) {
+			state.user = data;
+			console.log(state.user);
 		}
   },
 	actions: {
@@ -66,7 +76,11 @@ export default new Vuex.Store({
 
 			auth.onAuthStateChanged((user) => {
 				if (user) {
-					state.userId = user.uid;
+					state.commit('setUserInfo', {
+						id: user.uid,
+						name: user.displayName,
+						email: user.email
+					})
 				}
 			})
 		},
