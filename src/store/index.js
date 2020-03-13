@@ -99,7 +99,6 @@ export default new Vuex.Store({
 				.catch((error) => {
 					console.warn(error.message);
 				})
-
 		}
   },
 	getters: {
