@@ -76,15 +76,12 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/style/variables.scss";
+
 	#map {
 		position: relative;
 	}
 	.contact-map {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
 		.ymap-container {
 			height: 100%;
 		}
@@ -95,14 +92,21 @@ export default {
 		}
 	}
 	.contact-map-preloader {
+		background-image: url('~@/assets/yandex-maps-logo.jpg');
+		background-size: cover;
+		background-position: center;
+	}
+
+	.contact-map,
+	.contact-map-preloader {
 		position: absolute;
 		top: 0;
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background-image: url('~@/assets/yandex-maps-logo.jpg');
-		background-size: cover;
-		background-position: center;
+		border: 2px solid $main-color;
+		border-radius: 3px;
+		overflow: hidden;
 	}
 
 	.fade-enter-active, .fade-leave-active {

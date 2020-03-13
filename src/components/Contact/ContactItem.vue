@@ -1,6 +1,6 @@
 <template>
-  <section v-if="contact" class="contact-item">
-    <div class="contact-item__inner">
+  <section class="contact-item">
+    <div v-if="contact" class="contact-item__inner">
 
       <header class="contact-item__head">
         <h1 class="contact-item__title">{{ contact.name }}</h1>
@@ -46,11 +46,14 @@
       </div>
 
     </div>
+
+		<v-preloader v-else />
   </section>
 </template>
 
 <script>
 import ContactMap from '@/components/Contact/ContactMap.vue';
+import vPreloader from '@/components/vPreloader.vue';
 import { db } from "@/main";
 import avatar from "@/assets/icons/user.png";
 
@@ -58,6 +61,7 @@ export default {
 	name: "contact-item",
 	components: {
 		ContactMap,
+		vPreloader
 	},
   data() {
     return {
@@ -67,7 +71,7 @@ export default {
     };
   },
   mounted() {
-    this.getContactById(this.id);
+		this.getContactById(this.id);
   },
   methods: {
     async getContactById(id) {
@@ -86,6 +90,7 @@ export default {
 @import "@/style/variables.scss";
 
 .contact-item {
+	flex-grow: 1;
   background-color: $background-color;
   &__inner {
     padding: 20px 0;
