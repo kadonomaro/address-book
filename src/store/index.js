@@ -30,13 +30,22 @@ export default new Vuex.Store({
 
 		setUserInfo(state, data) {
 			state.user = data;
-			console.log(state.user);
 		}
   },
 	actions: {
 		async getContactsData(state) {
 			const contacts = [];
-			await db.ref('contacts')
+			// await db.ref('contacts')
+			// 	.once('value')
+			// 	.then((snapshot) => {
+			// 		snapshot.forEach((child) => {
+			// 			const contact = child.val();
+			// 			contacts.push(contact);
+			// 		});
+			// 		state.commit('updateContacts', contacts);
+			// 	});
+			await db.ref('/users/' + this.state.user.id)
+				.child('contacts')
 				.once('value')
 				.then((snapshot) => {
 					snapshot.forEach((child) => {
@@ -47,7 +56,13 @@ export default new Vuex.Store({
 				});
 		},
 		async addNewContact(state, contact) {
-			await db.ref('contacts')
+			// await db.ref('contacts')
+			// 	.child(contact.id)
+			// 	.update(contact)
+			// state.commit('addContact', contact);
+
+			await db.ref('/users/' + this.state.user.id)
+				.child('contacts')
 				.child(contact.id)
 				.update(contact)
 			state.commit('addContact', contact);
