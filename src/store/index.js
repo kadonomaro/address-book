@@ -56,7 +56,19 @@ export default new Vuex.Store({
 		},
 
 		login(state, user) {
+			auth.signInWithEmailAndPassword(user.email, user.password)
+				.then((data) => {
+					router.push({ name: 'Home' })
+				})
+				.catch((error) => {
+					console.warn(error.message);
+				});
 
+			auth.onAuthStateChanged((user) => {
+				if (user) {
+					state.userId = user.uid;
+				}
+			})
 		},
 		createUser(state, user) {
 			auth.createUserWithEmailAndPassword(user.email, user.password)
