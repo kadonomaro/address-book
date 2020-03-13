@@ -35,15 +35,6 @@ export default new Vuex.Store({
 	actions: {
 		async getContactsData(state) {
 			const contacts = [];
-			// await db.ref('contacts')
-			// 	.once('value')
-			// 	.then((snapshot) => {
-			// 		snapshot.forEach((child) => {
-			// 			const contact = child.val();
-			// 			contacts.push(contact);
-			// 		});
-			// 		state.commit('updateContacts', contacts);
-			// 	});
 			await db.ref('/users/' + this.state.user.id)
 				.child('contacts')
 				.once('value')
@@ -56,11 +47,6 @@ export default new Vuex.Store({
 				});
 		},
 		async addNewContact(state, contact) {
-			// await db.ref('contacts')
-			// 	.child(contact.id)
-			// 	.update(contact)
-			// state.commit('addContact', contact);
-
 			await db.ref('/users/' + this.state.user.id)
 				.child('contacts')
 				.child(contact.id)
@@ -69,12 +55,13 @@ export default new Vuex.Store({
 		},
 		deleteContacts(state, contactIdList) {
 			contactIdList.forEach((contactId) => {
-				db.ref('contacts')
+				db.ref('/users/' + this.state.user.id)
+					.child('contacts')
 					.child(contactId)
 					.remove()
 					.catch((error) => {
 						console.warn('Контакт не существует');
-					})
+					});
 				state.commit('removeContact', contactId);
 			});
 		},
@@ -121,6 +108,9 @@ export default new Vuex.Store({
 		},
 		getUserInfo(state) {
 			return state.user
+		},
+		getUserId(state) {
+			return state.user.id;
 		}
   }
 })

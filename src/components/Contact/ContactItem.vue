@@ -47,11 +47,12 @@
 
     </div>
 
-		<v-preloader v-else />
+		<v-preloader v-if="isLoading" />
   </section>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import ContactMap from '@/components/Contact/ContactMap.vue';
 import vPreloader from '@/components/vPreloader.vue';
 import { db } from "@/main";
@@ -67,7 +68,8 @@ export default {
     return {
       id: this.$route.params.id,
       contact: null,
-      avatar,
+			avatar,
+			isLoading: true
     };
   },
   mounted() {
@@ -75,14 +77,29 @@ export default {
   },
   methods: {
     async getContactById(id) {
-      await db
-        .ref('contacts/' + id)
-        .once('value')
-        .then(snapshot => {
-          this.contact = snapshot.val();
-        });
+			await db.ref('/users/' + this.getUserId)
+				.child('contacts')
+				.child(id)
+				.once('value')
+				.then((snapshot) => {
+					this.contact = snapshot.val();
+					this.isLoading = false;
+				})
+
+      // await db
+      //   .ref('contacts/' + id)
+      //   .once('value')
+      //   .then(snapshot => {
+			// 		this.contact = snapshot.val();
+			// 		this.isLoading = false;
+      //   });
     }
-  }
+	},
+	computed: {
+		...mapGetters([
+			'getUserId'
+		])
+	}
 };
 </script>
 

@@ -105,8 +105,6 @@ export default {
 		left: 0;
 		right: 0;
 		border: 2px solid $main-color;
-		border-radius: 3px;
-		overflow: hidden;
 	}
 
 	.fade-enter-active, .fade-leave-active {
