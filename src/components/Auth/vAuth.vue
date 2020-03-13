@@ -6,14 +6,14 @@
 			</div>
 			<span class="auth__title">{{ title }}</span>
 
-			<form v-if="type === 'login'" class="auth__form" action="">
+			<form v-if="type === 'login'" class="auth__form" action="" @submit.prevent="login">
 					<label for="" class="auth__label auth__label--user">
-						<input type="text" class="auth__field input" placeholder="Имя пользователя">
+						<input type="text" class="auth__field input" placeholder="Имя пользователя" v-model="user.name">
 					</label>
 					<label for="" class="auth__label auth__label--password">
-						<input type="password" class="auth__field input" placeholder="Пароль" autocomplete="on">
+						<input type="password" class="auth__field input" placeholder="Пароль" autocomplete="on" v-model="user.password">
 					</label>
-					<button class="auth__button">Войти</button>
+					<button class="auth__button" :disabled="!disabled">Войти</button>
 
 					<span class="auth__text">
 						Еще нет аккаунта? <router-link class="auth__link" to="/register">Зарегистрируйтесь</router-link>
@@ -21,17 +21,18 @@
 			</form>
 
 
-			<form v-if="type === 'register'" class="auth__form" action="">
+			<form v-if="type === 'register'" class="auth__form" action="" @submit.prevent="register">
 				<label for="" class="auth__label auth__label--user">
-					<input type="text" class="auth__field input" placeholder="Имя пользователя">
+					<input type="text" class="auth__field input" placeholder="Имя пользователя" v-model="user.name">
 				</label>
 				<label for="" class="auth__label auth__label--password">
-					<input type="password" class="auth__field input" placeholder="Пароль" autocomplete="on">
+					<input type="password" class="auth__field input" placeholder="Пароль" autocomplete="on" v-model="user.password">
 				</label>
 				<label for="" class="auth__label auth__label--password">
-					<input type="password" class="auth__field input" placeholder="Повторить пароль" autocomplete="on">
+					<input type="password" class="auth__field input" placeholder="Повторить пароль" autocomplete="on" v-model="user.repeatPassword">
+					<span v-if="user.password !== user.repeatPassword" class="auth__error">Пароли должны совпадать</span>
 				</label>
-				<button class="auth__button">Зарегистрироваться</button>
+				<button class="auth__button" :disabled="!disabled">Зарегистрироваться</button>
 
 				<span class="auth__text">
 					Уже есть аккаунт? <router-link class="auth__link" to="/login">Войти</router-link>
@@ -47,18 +48,45 @@ import vLogo from '@/components/Blocks/vLogo.vue';
 
 export default {
 	name: 'v-auth',
+	components: {
+		vLogo
+	},
 	props: {
 		type: {
 			type: String,
 			required: true
 		}
 	},
-	components: {
-		vLogo
+	data() {
+		return {
+			user: {
+				name: '',
+				password: '',
+				repeatPassword: ''
+			}
+		}
+	},
+	methods: {
+		login() {
+			console.log('login');
+			console.log(this.user);
+		},
+		register() {
+			console.log('register');
+			console.log(this.user);
+		}
 	},
 	computed: {
 		title() {
 			return this.type === 'login' ? 'Авторизация' : 'Регистрация';
+		},
+		disabled() {
+			if (this.type === 'login') {
+				return this.user.name.length > 0 && this.user.password.length > 0;
+			}
+			if (this.type === 'register') {
+				return this.user.name.length > 0 && this.user.password.length > 0 && this.user.password === this.user.repeatPassword;
+			}
 		}
 	}
 }
@@ -165,10 +193,46 @@ export default {
 				color: #ffffff;
 				background-color: $main-color;
 			}
+			&:hover:disabled,
+			&:focus:disabled {
+				color: $border-color;
+				background-color: #ffffff;
+			}
+			&:disabled {
+				color: $border-color;
+				border-color: $border-color;
+				cursor: default;
+			}
 		}
 		&__text {
 			display: block;
 			font-size: 14px;
+		}
+		&__error {
+			position: absolute;
+			display: block;
+			padding: 3px 5px;
+			top: 50%;
+			right: 0;
+			color: #ffffff;
+			font-size: 12px;
+			text-align: center;
+			background-color: $danger-color;
+			border-radius: 10px;
+			transform: translate(105%, -50%);
+			box-sizing: border-box;
+			&::after {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: -5px;
+				width: 0;
+				height: 0;
+				border-top: 5px solid transparent;
+				border-bottom: 5px solid transparent;
+				border-right: 7px solid $danger-color;
+				transform: translateY(-50%);
+			}
 		}
 	}
 </style>
