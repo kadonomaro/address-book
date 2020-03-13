@@ -1,6 +1,6 @@
 <template>
-	<div class="login-page">
-		<v-auth :type="'login'" />
+	<div class="register-page">
+		<v-auth :type="'register'" />
 	</div>
 </template>
 

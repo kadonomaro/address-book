@@ -24,6 +24,12 @@ const routes = [
     component: () => import('../views/Login.vue')
 	},
 	{
+    path: '/register',
+		name: 'Register',
+		meta: {layout: 'auth'},
+    component: () => import('../views/Register.vue')
+	},
+	{
 		path: '/contact/:id',
 		name: 'contact-item',
 		meta: {layout: 'main'},
