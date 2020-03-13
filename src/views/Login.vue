@@ -1,12 +1,17 @@
 <template>
 	<div class="login-page">
-		login
+		<v-login />
 	</div>
 </template>
 
 <script>
+import vLogin from '@/components/Auth/vLogin.vue';
+
 export default {
-	name: 'Login'
+	name: 'Login',
+	components: {
+		vLogin
+	}
 }
 </script>
 

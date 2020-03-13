@@ -1,7 +1,7 @@
 <template>
 	<footer class="footer">
 		<div class="footer__inner">
-			<v-logo class="footer__logo" :theme="'light'" />
+			<v-logo class="footer__logo" :theme="'light'" :text="'Лучшие решения для бизнеса'" />
 			<ul class="footer__list">
 				<li class="footer__item">
 					<router-link class="footer__link" to="/">Главная</router-link>

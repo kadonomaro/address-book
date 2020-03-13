@@ -1,7 +1,7 @@
 <template>
 	<div :class="['logo', {'logo--light': theme === 'light'}]">
-		<div class="logo__image"></div>
-		<span class="logo__text">Лучшие решения для бизнеса</span>
+		<div class="logo__image" :style="{'width': width + 'px'}"></div>
+		<span v-if="text" class="logo__text">{{ text }}</span>
 	</div>
 </template>
 
@@ -12,6 +12,15 @@ export default {
 		theme: {
 			type: String,
 			required: false
+		},
+		text: {
+			type: String,
+			required: false
+		},
+		width: {
+			type: Number,
+			required: false,
+			default: 120
 		}
 	}
 }
@@ -25,7 +34,6 @@ export default {
 		align-items: center;
 		max-width: 240px;
 		&__image {
-			width: 120px;
 			flex-shrink: 0;
 			background-image: url('~@/assets/logo.svg');
 			background-repeat: no-repeat;
