@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { db } from '@/main';
+import { db, auth } from '@/main';
+import router from '@/router'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		contacts: []
+		contacts: [],
+		userId: ''
   },
 	mutations: {
 		updateContacts(state, contacts) {
@@ -51,6 +53,26 @@ export default new Vuex.Store({
 					})
 				state.commit('removeContact', contactId);
 			});
+		},
+
+		login(state, user) {
+
+		},
+		createUser(state, user) {
+			auth.createUserWithEmailAndPassword(user.email, user.password)
+				.then((data) => {
+					data.user
+						.updateProfile({
+							displayName: user.name
+						})
+						.then(() => {
+							router.push({ name: 'Login' })
+						})
+				})
+				.catch((error) => {
+					console.warn(error.message);
+				})
+
 		}
   },
 	getters: {
