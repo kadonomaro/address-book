@@ -8,31 +8,44 @@ const routes = [
   {
     path: '/',
 		name: 'Home',
-		meta: {layout: 'main'},
+		meta: {
+			layout: 'main',
+			requiresAuth: true
+		},
     component: Home
   },
   {
     path: '/about',
 		name: 'About',
-		meta: {layout: 'main'},
+		meta: {
+			layout: 'main',
+			requiresAuth: true
+		},
     component: () => import('../views/About.vue')
 	},
 	{
     path: '/login',
 		name: 'Login',
-		meta: {layout: 'auth'},
+		meta: {
+			layout: 'auth'
+		},
     component: () => import('../views/Login.vue')
 	},
 	{
     path: '/register',
 		name: 'Register',
-		meta: {layout: 'auth'},
+		meta: {
+			layout: 'auth'
+		},
     component: () => import('../views/Register.vue')
 	},
 	{
 		path: '/contact/:id',
 		name: 'contact-item',
-		meta: {layout: 'main'},
+		meta: {
+			layout: 'main',
+			requestAuth: true
+		},
 		component: () => import('@/components/Contact/ContactItem.vue')
 	}
 ]

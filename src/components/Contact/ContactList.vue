@@ -158,7 +158,7 @@ export default {
 			filteredData: [],
 			isModalVisible: false,
 			contactForm: {},
-			contactsIdList: []
+			contactsIdList: [],
 		}
 	},
 	mounted(){

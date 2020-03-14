@@ -7,9 +7,6 @@
 			<li class="navigation__item">
 				<router-link class="navigation__link" to="/about">About</router-link>
 			</li>
-			<li class="navigation__item">
-				<router-link class="navigation__link" to="/login">Login</router-link>
-			</li>
 		</ul>
 	</nav>
 </template>
