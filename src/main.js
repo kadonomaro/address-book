@@ -65,9 +65,10 @@ Vue.component('paginate', Paginate);
 
 router.beforeEach(async (to, from, next) => {
 	const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-	console.log(requiresAuth);
 	if (requiresAuth && !store.getters.getUserId) {
-		next('login');
+		next({
+			name: 'Login'
+		});
 	} else {
 		next();
 	}

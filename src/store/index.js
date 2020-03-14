@@ -85,6 +85,17 @@ export default new Vuex.Store({
 				}
 			})
 		},
+
+		logout() {
+			auth.signOut()
+				.then(() => {
+					this.user = {};
+					router.push({
+						name: 'Login'
+					})
+				})
+		},
+
 		createUser(state, user) {
 			auth.createUserWithEmailAndPassword(user.email, user.password)
 				.then((data) => {
