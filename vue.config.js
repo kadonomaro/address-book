@@ -1,8 +1,8 @@
 module.exports = {
   assetsDir: 'assets',
-  outputDir: 'docs',
+  outputDir: 'dist',
   css: {
     requireModuleExtension: true
 	},
-	publicPath: process.env.NODE_ENV === 'production' ? '/address-book/' : '/'
+	// publicPath: process.env.NODE_ENV === 'production' ? '/address-book/' : '/'
 }
