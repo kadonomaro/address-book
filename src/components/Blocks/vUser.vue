@@ -1,5 +1,5 @@
 <template>
-	<div v-if="getUserInfo.id" class="user">
+	<div v-if="getUserInfo" class="user">
 		<div class="user__avatar">
 			<img :src="getUserInfo.avatar || avatar" :alt="getUserInfo.name">
 		</div>

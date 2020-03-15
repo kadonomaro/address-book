@@ -69,7 +69,7 @@ export default new Vuex.Store({
 		login(state, user) {
 			auth.signInWithEmailAndPassword(user.email, user.password)
 				.then((data) => {
-					router.push({ name: 'Home' })
+					router.push({ name: 'Home' });
 				})
 				.catch((error) => {
 					console.warn(error.message);
@@ -77,11 +77,13 @@ export default new Vuex.Store({
 
 			auth.onAuthStateChanged((user) => {
 				if (user) {
-					state.commit('setUserInfo', {
+					const userInfo = {
 						id: user.uid,
 						name: user.displayName,
 						email: user.email
-					})
+					}
+					state.commit('setUserInfo', userInfo);
+					localStorage.setItem('user_info', JSON.stringify(userInfo));
 				}
 			})
 		},
@@ -90,9 +92,8 @@ export default new Vuex.Store({
 			auth.signOut()
 				.then(() => {
 					this.user = {};
-					router.push({
-						name: 'Login'
-					})
+					router.push({ name: 'Login' });
+					localStorage.removeItem('user_info');
 				})
 		},
 

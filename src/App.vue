@@ -15,6 +15,15 @@ export default {
 		MainLayout,
 		AuthLayout
 	},
+	created() {
+		this.getUserInfoFromLocalStorage();
+	},
+	methods: {
+		getUserInfoFromLocalStorage() {
+			const userInfo = JSON.parse(localStorage.getItem('user_info'));
+			this.$store.commit('setUserInfo', userInfo);
+		}
+	},
 	computed: {
 		layout() {
 			return (this.$route.meta.layout || 'main') + '-layout';
