@@ -66,7 +66,7 @@ export default {
   methods: {
     async getCoordByAddress(address) {
 			const response = await fetch(
-				`https://geocode-maps.yandex.ru/1.x/?format=json&apikey=${process.env.VUE_APP_YMAP_API_KEY}&geocode=${address}`
+				`https://geocode-maps.yandex.ru/1.x/?format=json&apikey=9997739f-f8c2-4371-ab19-02877c805d38&geocode=${address}`
 			);
 			const data = await response.json();
 			return data;

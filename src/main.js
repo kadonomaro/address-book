@@ -47,7 +47,7 @@ const firebaseProdConfig = {
 
 
 const yMapSettings = {
-	apiKey: process.env.VUE_APP_YMAP_API_KEY,
+	apiKey: '9997739f-f8c2-4371-ab19-02877c805d38',
 	lang: 'ru_RU',
 	coordorder: 'latlong',
 	version: '2.1'
