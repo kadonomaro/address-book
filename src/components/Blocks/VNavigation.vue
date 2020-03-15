@@ -2,10 +2,10 @@
 	<nav class="navigation">
 		<ul class="navigation__list">
 			<li class="navigation__item">
-				<router-link class="navigation__link" to="/">Home</router-link>
+				<router-link class="navigation__link" to="/">Контакты</router-link>
 			</li>
 			<li class="navigation__item">
-				<router-link class="navigation__link" to="/about">About</router-link>
+				<router-link class="navigation__link" to="/about">О компании</router-link>
 			</li>
 		</ul>
 	</nav>
@@ -28,11 +28,14 @@ export default {
 			list-style: none;
 		}
 		&__item {
+			border: 1px solid #ffffff;
+			border-right: none;
 			&:first-child {
 				border-top-left-radius: 3px;
 				border-bottom-left-radius: 3px;
 			}
 			&:last-child {
+				border: 1px solid #ffffff;
 				border-top-right-radius: 3px;
 				border-bottom-right-radius: 3px;
 			}
@@ -41,8 +44,6 @@ export default {
 			display: block;
 			padding: 5px 12px;
 			color: inherit;
-			border: 1px solid #ffffff;
-			border-radius: inherit;
 			transition: color 0.2s ease-in, background-color 0.2s ease-in;
 			&:hover,
 			&:focus {

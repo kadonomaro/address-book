@@ -1,8 +1,19 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <v-company />
   </div>
 </template>
+
+<script>
+import vCompany from '@/components/About/vCompany.vue';
+
+export default {
+  name: 'Home',
+  components: {
+		vCompany
+	},
+}
+</script>
 
 <style lang="scss">
 	.about {

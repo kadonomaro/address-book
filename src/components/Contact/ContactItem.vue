@@ -84,15 +84,7 @@ export default {
 				.then((snapshot) => {
 					this.contact = snapshot.val();
 					this.isLoading = false;
-				})
-
-      // await db
-      //   .ref('contacts/' + id)
-      //   .once('value')
-      //   .then(snapshot => {
-			// 		this.contact = snapshot.val();
-			// 		this.isLoading = false;
-      //   });
+				});
     }
 	},
 	computed: {
