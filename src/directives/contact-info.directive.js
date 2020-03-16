@@ -31,9 +31,6 @@ export default {
 							<span class="age"><b>Возраст:</b> ${binding.value.age}</span>
 						</div>
 					</header>
-					<div class="contact-info__info">
-
-					</div>
 					<footer class="contact-info__footer">
 						<a href="tel:${binding.value.phone}" class="button call" title="Позвонить"></a>
 						<a href="mailto:${binding.value.email}" class="button send" title="Написать"></a>

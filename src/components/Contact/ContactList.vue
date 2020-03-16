@@ -98,7 +98,6 @@
       :page-count="pageCount"
       :page-range="pageRange"
       :click-handler="pageChangeHandler"
-			:margin-pages="marginPages"
       :prev-text="'<'"
       :next-text="'>'"
       :container-class="'pagination'">

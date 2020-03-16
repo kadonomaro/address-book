@@ -5,7 +5,6 @@ export default {
       pageSize: 15,
       pageRange: 1,
 			pageCount: 0,
-			marginPages: 3,
       allItems: [],
       items: []
     };

@@ -2,6 +2,10 @@
   <section class="contact-item">
     <div v-if="contact" class="contact-item__inner">
 
+			<div class="contact-item__toolbar">
+				<v-button :text="'Назад'" @on-click="goToPrevPage"/>
+			</div>
+
       <header class="contact-item__head">
         <h1 class="contact-item__title">{{ contact.name }}</h1>
       </header>
@@ -41,7 +45,7 @@
           </ul>
         </div>
 
-				<contact-map v-if="contact.location" :address="contact.location" />
+				<contact-map v-if="contact.location" :address="contact.location"/>
 
       </div>
 
@@ -55,6 +59,7 @@
 import { mapGetters } from 'vuex';
 import ContactMap from '@/components/Contact/ContactMap.vue';
 import vPreloader from '@/components/vPreloader.vue';
+import vButton from '@/components/Blocks/vButton.vue';
 import { db } from "@/main";
 import avatar from "@/assets/icons/user.png";
 
@@ -62,7 +67,8 @@ export default {
 	name: "contact-item",
 	components: {
 		ContactMap,
-		vPreloader
+		vPreloader,
+		vButton
 	},
   data() {
     return {
@@ -85,7 +91,10 @@ export default {
 					this.contact = snapshot.val();
 					this.isLoading = false;
 				});
-    }
+		},
+		goToPrevPage() {
+			this.$router.go(-1);
+		}
 	},
 	computed: {
 		...mapGetters([
@@ -100,7 +109,21 @@ export default {
 
 .contact-item {
 	flex-grow: 1;
-  background-color: $background-color;
+	width: 100%;
+	max-width: 1600px;
+	margin: 0 auto;
+	padding: 0 20px;
+	background-color: $background-color;
+	box-sizing: border-box;
+	&__toolbar {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 20px;
+		padding: 20px 30px;
+		background-color: #ffffff;
+		border: 1px solid $border-color;
+		border-radius: 5px;
+	}
   &__inner {
     padding: 20px 0;
     max-width: 1600px;
@@ -115,8 +138,8 @@ export default {
 		margin-bottom: 20px;
   }
   &__avatar {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     img {
       width: 100%;
     }

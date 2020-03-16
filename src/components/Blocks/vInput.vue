@@ -38,6 +38,7 @@ export default {
 
 <style lang="scss">
 	@import '@/style/variables.scss';
+	@import '@/style/input.scss';
 
 	.input-label {
 		display: block;
