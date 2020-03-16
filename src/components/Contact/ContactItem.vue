@@ -3,7 +3,10 @@
     <div v-if="contact" class="contact-item__inner">
 
 			<div class="contact-item__toolbar">
-				<v-button :text="'Назад'" @on-click="goToPrevPage"/>
+				<v-button class="contact-item__button" :text="'Назад'" @on-click="goToPrevPage"/>
+				<v-button v-if="!isEditable" class="contact-item__button" :text="'Редактировать'" @on-click="editContact"/>
+				<v-button v-if="isEditable" class="contact-item__button" :text="'Сохранить'" @on-click="editContactSave"/>
+				<v-button v-if="isEditable" class="contact-item__button" :text="'Отменить'" @on-click="editContactCancel"/>
 			</div>
 
       <header class="contact-item__head">
@@ -19,15 +22,22 @@
         <div class="contact-item__info user-info">
           <ul class="user-info__list">
             <li class="user-info__item">
-              <b>Возраст:</b>
-              {{ contact.age }}
+							<label class="user-info__label">
+								<span class="user-info__field-caption">Возраст: </span>
+								<input class="user-info__field" type="text" v-model="contact.age" :disabled="!isEditable">
+							</label>
             </li>
             <li class="user-info__item">
-              <b>Пол:</b>
-              {{ contact.sex }}
+							<label class="user-info__label">
+								<span class="user-info__field-caption">Пол: </span>
+								<input class="user-info__field" type="text" v-model="contact.sex" :disabled="!isEditable">
+							</label>
             </li>
             <li class="user-info__item">
-              <b>Статус: </b>
+							<label class="user-info__label">
+								<span class="user-info__field-caption">Статус: </span>
+								<input class="user-info__field" type="text" v-model="contact.tags" :disabled="!isEditable">
+							</label>
               <span
                 class="user-info__tag"
                 v-for="(tag, index) in contact.tags"
@@ -35,11 +45,18 @@
               >{{ tag }}{{ index !== contact.tags.length - 1 ? ', ' : '' }}</span>
             </li>
             <li class="user-info__item">
-              <b>Телефон: </b>
+							<label class="user-info__label">
+								<span class="user-info__field-caption">Телефон: </span>
+								<input class="user-info__field" type="text" v-model="contact.phone" :disabled="!isEditable">
+							</label>
+
               <a :href="`tel:${contact.phone}`" class="user-info__link">{{ contact.phone | phone}}</a>
             </li>
             <li class="user-info__item">
-              <b>Электронная почта: </b>
+							<label class="user-info__label">
+								<span class="user-info__field-caption">Электронная почта: </span>
+								<input class="user-info__field" type="text" v-model="contact.email" :disabled="!isEditable">
+							</label>
               <a :href="`mailto:${contact.email}`" class="user-info__link">{{ contact.email }}</a>
             </li>
           </ul>
@@ -75,7 +92,8 @@ export default {
       id: this.$route.params.id,
       contact: null,
 			avatar,
-			isLoading: true
+			isLoading: true,
+			isEditable: false
     };
   },
   mounted() {
@@ -94,6 +112,16 @@ export default {
 		},
 		goToPrevPage() {
 			this.$router.go(-1);
+		},
+		editContact() {
+			this.isEditable = true;
+		},
+		editContactCancel() {
+			this.isEditable = false;
+		},
+		editContactSave() {
+			this.isEditable = false;
+			console.log('save');
 		}
 	},
 	computed: {
@@ -117,7 +145,6 @@ export default {
 	box-sizing: border-box;
 	&__toolbar {
 		display: flex;
-		justify-content: space-between;
 		margin-bottom: 20px;
 		padding: 20px 30px;
 		background-color: #ffffff;
@@ -148,6 +175,10 @@ export default {
 		padding: 0 20px;
 		margin-right: auto;
 	}
+	&__button {
+		margin-right: 10px;
+	}
+
 }
 
 .user-info {
@@ -159,6 +190,30 @@ export default {
     margin-bottom: 10px;
   }
   &__link {
-  }
+	}
+	&__label {
+
+	}
+	&__field-caption {
+		font-weight: bold;
+	}
+	&__field {
+		padding: 3px 6px;
+		color: $text-color;
+		font: inherit;
+		border: 2px solid $border-color;
+		border-radius: 3px;
+		transition: border-color 0.2s ease;
+		outline: none;
+		&:focus {
+			border-color: $main-color;
+		}
+		&:disabled {
+			color: inherit;
+			font: inherit;
+			background-color: transparent;
+			border: none;
+		}
+	}
 }
 </style>

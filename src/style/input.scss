@@ -2,7 +2,7 @@
 	width: 100%;
 	padding: 5px 8px;
 	color: $text-color;
-	font-size: 16px;
+	font: inherit;
 	border: 2px solid $border-color;
 	border-radius: 3px;
 	transition: border-color 0.2s ease;
