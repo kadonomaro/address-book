@@ -4,17 +4,17 @@
 
 			<div class="contact-item__toolbar">
 				<v-button class="contact-item__button" :text="'Назад'" @on-click="goToPrevPage"/>
-				<v-button v-if="!isEditable" class="contact-item__button" :text="'Редактировать'" @on-click="editContact"/>
+				<v-button v-if="!isEditable" :hasIcon="true" :icon="'edit'" class="contact-item__button" :text="'Редактировать'" @on-click="editContact"/>
 				<v-button v-if="isEditable" class="contact-item__button" :text="'Сохранить'" @on-click="editContactSave"/>
 				<v-button v-if="isEditable" class="contact-item__button" :text="'Отменить'" @on-click="editContactCancel"/>
 			</div>
 
       <header class="contact-item__head">
-        <h1 class="contact-item__title">{{ contact.name }}</h1>
+        <h1 v-if="!isEditable" class="contact-item__title">{{ contact.name }}</h1>
+				<input class="contact-item__title-field" v-if="isEditable" type="text" v-model="contact.name">
       </header>
 
       <div class="contact-item__body">
-
         <div class="contact-item__avatar">
           <img :src="contact.avatar || avatar" :alt="contact.name" />
         </div>
@@ -49,15 +49,12 @@
 								<span class="user-info__field-caption">Телефон: </span>
 								<input class="user-info__field" type="text" v-model="contact.phone" :disabled="!isEditable">
 							</label>
-
-              <a :href="`tel:${contact.phone}`" class="user-info__link">{{ contact.phone | phone}}</a>
             </li>
             <li class="user-info__item">
 							<label class="user-info__label">
 								<span class="user-info__field-caption">Электронная почта: </span>
 								<input class="user-info__field" type="text" v-model="contact.email" :disabled="!isEditable">
 							</label>
-              <a :href="`mailto:${contact.email}`" class="user-info__link">{{ contact.email }}</a>
             </li>
           </ul>
         </div>
@@ -65,7 +62,6 @@
 				<contact-map v-if="contact.location" :address="contact.location"/>
 
       </div>
-
     </div>
 
 		<v-preloader v-if="isLoading" />
@@ -155,11 +151,29 @@ export default {
     padding: 20px 0;
     max-width: 1600px;
     margin: 0 auto;
-  }
-  &__title {
-    margin: 0 0 10px;
-    text-align: center;
-  }
+	}
+	&__head {
+		text-align: center;
+	}
+	&__title,
+	&__title-field {
+		display: inline-block;
+		margin: 0 0 10px;
+		font-size: 24px;
+		font-weight: bold;
+		font-family: inherit;
+	}
+	&__title-field {
+		padding: 3px 6px;
+		color: $text-color;
+		border: 2px solid $border-color;
+		border-radius: 3px;
+		transition: border-color 0.2s ease;
+		outline: none;
+		&:focus {
+			border-color: $main-color;
+		}
+	}
   &__body {
 		display: flex;
 		margin-bottom: 20px;
@@ -189,11 +203,6 @@ export default {
   &__item {
     margin-bottom: 10px;
   }
-  &__link {
-	}
-	&__label {
-
-	}
 	&__field-caption {
 		font-weight: bold;
 	}

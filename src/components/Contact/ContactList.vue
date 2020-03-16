@@ -7,6 +7,7 @@
 				<v-button
 					:text="'Добавить'"
 					:has-icon="true"
+					:icon="'plus'"
 					@on-click="isModalVisible = true;"
 				/>
 				<v-button
