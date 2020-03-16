@@ -11,7 +11,7 @@
 
       <header class="contact-item__head">
         <h1 v-if="!isEditable" class="contact-item__title">{{ contact.name }}</h1>
-				<input class="contact-item__title-field" v-if="isEditable" type="text" v-model="contact.name">
+				<input class="contact-item__title-field" v-if="isEditable" type="text" v-model="contact.name" :size="contact.name.length + 1">
       </header>
 
       <div class="contact-item__body">
@@ -38,11 +38,11 @@
 								<span class="user-info__field-caption">Статус: </span>
 								<input class="user-info__field" type="text" v-model="contact.tags" :disabled="!isEditable">
 							</label>
-              <span
+              <!-- <span
                 class="user-info__tag"
                 v-for="(tag, index) in contact.tags"
                 :key="index"
-              >{{ tag }}{{ index !== contact.tags.length - 1 ? ', ' : '' }}</span>
+              >{{ tag }}{{ index !== contact.tags.length - 1 ? ', ' : '' }}</span> -->
             </li>
             <li class="user-info__item">
 							<label class="user-info__label">
@@ -86,7 +86,8 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
-      contact: null,
+			contact: null,
+			contactHistory: {},
 			avatar,
 			isLoading: true,
 			isEditable: false
@@ -111,13 +112,15 @@ export default {
 		},
 		editContact() {
 			this.isEditable = true;
+			Object.assign(this.contactHistory, this.contact);
 		},
 		editContactCancel() {
 			this.isEditable = false;
+			this.contact = this.contactHistory;
 		},
 		editContactSave() {
 			this.isEditable = false;
-			console.log('save');
+			this.$store.dispatch('setContactChange', this.contact);
 		}
 	},
 	computed: {
