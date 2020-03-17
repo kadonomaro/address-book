@@ -119,6 +119,9 @@ export default {
 			this.contact = this.contactHistory;
 		},
 		editContactSave() {
+			this.contact.tags = this.contact.tags.split(',').map((tag) => {
+				return tag.trim();
+			});
 			this.isEditable = false;
 			this.$store.dispatch('setContactChange', this.contact);
 		}
@@ -127,7 +130,7 @@ export default {
 		...mapGetters([
 			'getUserId'
 		])
-	},
+	}
 };
 </script>
 

@@ -48,7 +48,6 @@ export default {
 				phone: '',
 				email: '',
 				tags: ''
-
 			}
 		}
 	},
