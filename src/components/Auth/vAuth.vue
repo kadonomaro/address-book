@@ -14,6 +14,7 @@
 						<input type="password" class="auth__field input" placeholder="Пароль" autocomplete="on" v-model="user.password">
 					</label>
 					<button class="auth__button" :disabled="!disabled">Войти</button>
+					<span class="auth__error" :class="{'auth__error--visible': auth.error}">{{ auth.error }}</span>
 
 					<span class="auth__text">
 						Еще нет аккаунта? <router-link class="auth__link" to="/register">Зарегистрируйтесь</router-link>
@@ -47,6 +48,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import vLogo from '@/components/Blocks/vLogo.vue';
 
 export default {
@@ -67,6 +69,9 @@ export default {
 				email: '',
 				password: '',
 				repeatPassword: ''
+			},
+			auth: {
+				error: ''
 			}
 		}
 	},
@@ -80,6 +85,9 @@ export default {
 		}
 	},
 	computed: {
+		...mapGetters([
+			'getLoginError'
+		]),
 		title() {
 			return this.type === 'login' ? 'Авторизация' : 'Регистрация';
 		},
@@ -90,6 +98,16 @@ export default {
 			if (this.type === 'register') {
 				return this.user.email.length > 0 && this.user.password.length > 0 && this.user.password === this.user.repeatPassword;
 			}
+		}
+	},
+	watch: {
+		getLoginError(val) {
+			const errorList = {
+				'auth/invalid-email': 'неверный адрес электронной почты',
+				'auth/user-not-found': 'пользователь не найден',
+				'auth/wrong-password': 'неправильный пароль'
+			}
+			this.auth.error = errorList[val];
 		}
 	}
 }
@@ -186,7 +204,7 @@ export default {
 		&__button {
 			padding: 7px 14px;
 			width: 100%;
-			margin-bottom: 20px;
+			margin-bottom: 5px;
 			color: $main-color;
 			font-size: 14px;
 			font-weight: bold;
@@ -216,30 +234,17 @@ export default {
 			font-size: 14px;
 		}
 		&__error {
-			position: absolute;
 			display: block;
-			padding: 3px 5px;
-			top: 50%;
-			right: 0;
-			color: #ffffff;
+			min-height: 14px;
+			margin-bottom: 5px;
+			color: $danger-color;
 			font-size: 12px;
 			text-align: center;
-			background-color: $danger-color;
-			border-radius: 10px;
-			transform: translate(105%, -50%);
-			box-sizing: border-box;
-			&::after {
-				content: '';
-				position: absolute;
-				top: 50%;
-				left: -5px;
-				width: 0;
-				height: 0;
-				border-top: 5px solid transparent;
-				border-bottom: 5px solid transparent;
-				border-right: 7px solid $danger-color;
-				transform: translateY(-50%);
-			}
+			opacity: 0;
+			transition: opacity 0.1s ease-in;
+		}
+		&__error--visible {
+			opacity: 1;
 		}
 	}
 </style>

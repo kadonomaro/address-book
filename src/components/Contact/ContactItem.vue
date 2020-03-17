@@ -127,7 +127,7 @@ export default {
 		...mapGetters([
 			'getUserId'
 		])
-	}
+	},
 };
 </script>
 

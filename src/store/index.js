@@ -12,6 +12,9 @@ export default new Vuex.Store({
 			id: null,
 			name: '',
 			email: ''
+		},
+		auth: {
+			error: ''
 		}
   },
 	mutations: {
@@ -39,6 +42,10 @@ export default new Vuex.Store({
 
 		setUserInfo(state, data) {
 			state.user = data;
+		},
+
+		setLoginError(state, error) {
+			state.auth.error = error;
 		}
   },
 	actions: {
@@ -92,7 +99,7 @@ export default new Vuex.Store({
 					router.push({ name: 'Home' });
 				})
 				.catch((error) => {
-					console.warn(error.message);
+					state.commit('setLoginError', error.code)
 				});
 
 			auth.onAuthStateChanged((user) => {
@@ -142,6 +149,10 @@ export default new Vuex.Store({
 		},
 		getUserId(state) {
 			return state.user.id;
+		},
+
+		getLoginError(state) {
+			return state.auth.error;
 		}
   }
 })
