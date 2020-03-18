@@ -16,6 +16,13 @@ a {
 	}
 }
 
+.container {
+	flex-grow: 1;
+	max-width: 1600px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 10px;
+}
 
 .visually-hidden {
 	position: absolute !important;

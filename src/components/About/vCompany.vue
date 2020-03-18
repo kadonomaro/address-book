@@ -32,10 +32,7 @@ export default {
 
 <style lang="scss">
 	.company {
-		max-width: 1600px;
-		margin: 0 auto;
-		padding: 20px 10px;
-		box-sizing: border-box;
+		padding: 20px 0;
 		&__title {
 			margin: 0 0 20px;
 			font-size: 24px;
@@ -47,6 +44,7 @@ export default {
 			flex-shrink: 0;
 		}
 		&__text {
+			padding-right: 20px;
 			p {
 				margin: 0 0 10px;
 			}

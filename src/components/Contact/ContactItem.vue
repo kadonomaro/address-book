@@ -133,11 +133,6 @@ export default {
 @import "@/style/variables.scss";
 
 .contact-item {
-	flex-grow: 1;
-	width: 100%;
-	max-width: 1600px;
-	margin: 0 auto;
-	padding: 0 20px;
 	background-color: $background-color;
 	box-sizing: border-box;
 	&__toolbar {
@@ -150,8 +145,6 @@ export default {
 	}
   &__inner {
     padding: 20px 0;
-    max-width: 1600px;
-    margin: 0 auto;
 	}
 	&__head {
 		text-align: center;

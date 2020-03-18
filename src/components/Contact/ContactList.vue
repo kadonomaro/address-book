@@ -223,9 +223,7 @@ export default {
 	@import '@/style/checkbox.scss';
 
 	.contact-list {
-		max-width: 1600px;
-		margin: 0 auto;
-		padding: 20px 10px;
+		padding: 20px 0;
 		&__head {
 			display: flex;
 			justify-content: space-between;

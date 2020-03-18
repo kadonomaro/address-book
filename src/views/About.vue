@@ -14,9 +14,3 @@ export default {
 	},
 }
 </script>
-
-<style lang="scss">
-	.about {
-		flex-grow: 1;
-	}
-</style>

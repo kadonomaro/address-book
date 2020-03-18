@@ -19,9 +19,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="scss">
-	.user-section {
-		flex-grow: 1;
-	}
-</style>

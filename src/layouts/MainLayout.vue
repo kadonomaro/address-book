@@ -1,7 +1,9 @@
 <template>
 	<div class="main-layout">
 		<v-header />
-		<router-view/>
+		<div class="container">
+			<router-view/>
+		</div>
 		<v-footer />
 	</div>
 </template>
