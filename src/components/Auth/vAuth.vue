@@ -14,7 +14,7 @@
 						<input type="password" class="auth__field input" placeholder="Пароль" autocomplete="on" v-model="user.password">
 					</label>
 					<button class="auth__button" :disabled="!disabled">Войти</button>
-					<span class="auth__error" :class="{'auth__error--visible': auth.error}">{{ auth.error }}</span>
+					<span class="auth__error" :class="{'auth__error--visible': error.login}">{{ error.login }}</span>
 
 					<span class="auth__text">
 						Еще нет аккаунта? <router-link class="auth__link" to="/register">Зарегистрируйтесь</router-link>
@@ -37,7 +37,7 @@
 					<span v-if="user.password !== user.repeatPassword" class="auth__error">Пароли должны совпадать</span>
 				</label>
 				<button class="auth__button" :disabled="!disabled">Зарегистрироваться</button>
-				<span class="auth__error" :class="{'auth__error--visible': auth.error}">{{ auth.error }}</span>
+				<span class="auth__error" :class="{'auth__error--visible': error.register}">{{ error.register }}</span>
 
 				<span class="auth__text">
 					Уже есть аккаунт? <router-link class="auth__link" to="/login">Войти</router-link>
@@ -51,6 +51,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import vLogo from '@/components/Blocks/vLogo.vue';
+import errorList from '@/components/Auth/errorList';
 
 export default {
 	name: 'v-auth',
@@ -71,8 +72,9 @@ export default {
 				password: '',
 				repeatPassword: ''
 			},
-			auth: {
-				error: ''
+			error: {
+				login: '',
+				register: ''
 			}
 		}
 	},
@@ -86,7 +88,8 @@ export default {
 	},
 	computed: {
 		...mapGetters([
-			'getAuthError'
+			'getLoginError',
+			'getRegisterError'
 		]),
 		title() {
 			return this.type === 'login' ? 'Авторизация' : 'Регистрация';
@@ -101,13 +104,11 @@ export default {
 		}
 	},
 	watch: {
-		getAuthError(val) {
-			const errorList = {
-				'auth/invalid-email': 'неверный адрес электронной почты',
-				'auth/user-not-found': 'пользователь не найден',
-				'auth/wrong-password': 'неправильный пароль'
-			}
-			this.auth.error = errorList[val];
+		getLoginError(val) {
+			this.error.login = errorList[val];
+		},
+		getRegisterError(val) {
+			this.error.register = errorList[val];
 		}
 	}
 }

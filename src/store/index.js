@@ -13,8 +13,9 @@ export default new Vuex.Store({
 			name: '',
 			email: ''
 		},
-		auth: {
-			error: ''
+		error: {
+			login: '',
+			register: ''
 		}
   },
 	mutations: {
@@ -44,8 +45,8 @@ export default new Vuex.Store({
 			state.user = data;
 		},
 
-		setAuthError(state, error) {
-			state.auth.error = error;
+		setAuthError(state, [ error, type ]) {
+			state.error[type] = error;
 		}
   },
 	actions: {
@@ -99,7 +100,7 @@ export default new Vuex.Store({
 					router.push({ name: 'Home' });
 				})
 				.catch((error) => {
-					state.commit('setAuthError', error.code)
+					state.commit('setAuthError', [error.code, 'login'])
 				});
 
 			auth.onAuthStateChanged((user) => {
@@ -136,7 +137,7 @@ export default new Vuex.Store({
 						})
 				})
 				.catch((error) => {
-					state.commit('setAuthError', error.code);
+					state.commit('setAuthError', [error.code, 'register']);
 				})
 		}
   },
@@ -152,9 +153,11 @@ export default new Vuex.Store({
 				return state.user.id;
 			}
 		},
-
-		getAuthError(state) {
-			return state.auth.error;
+		getLoginError(state) {
+			return state.error.login
+		},
+		getRegisterError(state) {
+			return state.error.register;
 		}
   }
 })
