@@ -9,7 +9,7 @@
 
 <script>
 import vNavigation from '@/components/Blocks/vNavigation.vue';
-import vUser from '@/components/Blocks/vUser.vue';
+import vUser from '@/components/User/vUser.vue';
 
 export default {
 	name: 'v-header',

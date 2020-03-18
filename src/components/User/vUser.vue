@@ -5,7 +5,7 @@
 		</div>
 		<div class="user__info">
 			<span class="user__name">
-				<router-link class="user__link" :to="getUserInfo.id">{{ getUserInfo.name }}</router-link>
+				<router-link class="user__link" :to="{name: 'user', query: {'id': getUserInfo.id}}">{{ getUserInfo.name }}</router-link>
 			</span>
 			<span class="user__email">{{ getUserInfo.email }}</span>
 		</div>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '@/views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -21,7 +21,7 @@ const routes = [
 			layout: 'main',
 			requiresAuth: true
 		},
-    component: () => import('../views/About.vue')
+    component: () => import('@/views/About.vue')
 	},
 	{
     path: '/login',
@@ -29,7 +29,7 @@ const routes = [
 		meta: {
 			layout: 'auth'
 		},
-    component: () => import('../views/Login.vue')
+    component: () => import('@/views/Login.vue')
 	},
 	{
     path: '/register',
@@ -37,7 +37,7 @@ const routes = [
 		meta: {
 			layout: 'auth'
 		},
-    component: () => import('../views/Register.vue')
+    component: () => import('@/views/Register.vue')
 	},
 	{
 		path: '/contact/:id',
@@ -47,6 +47,15 @@ const routes = [
 			requestAuth: true
 		},
 		component: () => import('@/components/Contact/ContactItem.vue')
+	},
+	{
+		path: '/user',
+		name: 'user',
+		meta: {
+			layout: 'main',
+			requestAuth: true
+		},
+		component: () => import('@/views/User.vue')
 	}
 ]
 
