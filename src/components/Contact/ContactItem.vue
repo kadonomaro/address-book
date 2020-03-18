@@ -38,11 +38,6 @@
 								<span class="user-info__field-caption">Статус: </span>
 								<input class="user-info__field" type="text" v-model="contact.tags" :disabled="!isEditable">
 							</label>
-              <!-- <span
-                class="user-info__tag"
-                v-for="(tag, index) in contact.tags"
-                :key="index"
-              >{{ tag }}{{ index !== contact.tags.length - 1 ? ', ' : '' }}</span> -->
             </li>
             <li class="user-info__item">
 							<label class="user-info__label">

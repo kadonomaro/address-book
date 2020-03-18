@@ -37,6 +37,7 @@
 					<span v-if="user.password !== user.repeatPassword" class="auth__error">Пароли должны совпадать</span>
 				</label>
 				<button class="auth__button" :disabled="!disabled">Зарегистрироваться</button>
+				<span class="auth__error" :class="{'auth__error--visible': auth.error}">{{ auth.error }}</span>
 
 				<span class="auth__text">
 					Уже есть аккаунт? <router-link class="auth__link" to="/login">Войти</router-link>
@@ -81,12 +82,11 @@ export default {
 		},
 		register() {
 			this.$store.dispatch('createUser', this.user);
-
 		}
 	},
 	computed: {
 		...mapGetters([
-			'getLoginError'
+			'getAuthError'
 		]),
 		title() {
 			return this.type === 'login' ? 'Авторизация' : 'Регистрация';
@@ -101,7 +101,7 @@ export default {
 		}
 	},
 	watch: {
-		getLoginError(val) {
+		getAuthError(val) {
 			const errorList = {
 				'auth/invalid-email': 'неверный адрес электронной почты',
 				'auth/user-not-found': 'пользователь не найден',

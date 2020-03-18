@@ -8,7 +8,7 @@
 import vAuth from '@/components/Auth/vAuth.vue';
 
 export default {
-	name: 'Login',
+	name: 'Register',
 	components: {
 		vAuth
 	}

@@ -9,7 +9,3 @@ export default {
 	name: 'auth-layout'
 }
 </script>
-
-<style>
-
-</style>

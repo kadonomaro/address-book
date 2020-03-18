@@ -106,11 +106,4 @@ export default {
 		right: 0;
 		border: 2px solid $main-color;
 	}
-
-	.fade-enter-active, .fade-leave-active {
-  	transition: opacity 0.5s;
-	}
-	.fade-enter, .fade-leave-to {
-		opacity: 0;
-	}
 </style>
