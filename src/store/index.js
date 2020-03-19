@@ -17,7 +17,7 @@ export default new Vuex.Store({
 			login: '',
 			register: ''
 		}
-  },
+	},
 	mutations: {
 		updateContacts(state, contacts) {
 			state.contacts = contacts;
@@ -45,10 +45,10 @@ export default new Vuex.Store({
 			state.user = data;
 		},
 
-		setAuthError(state, [ error, type ]) {
+		setAuthError(state, [error, type]) {
 			state.error[type] = error;
 		}
-  },
+	},
 	actions: {
 		async getContactsData(state) {
 			const contacts = [];
@@ -103,13 +103,19 @@ export default new Vuex.Store({
 					state.commit('setAuthError', [error.code, 'login'])
 				});
 
+
 			auth.onAuthStateChanged((user) => {
 				if (user) {
+					const currentUser = auth.currentUser;
 					const userInfo = {
 						id: user.uid,
 						name: user.displayName,
-						email: user.email
+						email: user.email,
+						photoUrl: user.photoUrl,
+						creationTime: currentUser.metadata.creationTime,
+						lastSignInTime: currentUser.metadata.lastSignInTime
 					}
+
 					state.commit('setUserInfo', userInfo);
 					localStorage.setItem('user_info', JSON.stringify(userInfo));
 				}
@@ -140,11 +146,12 @@ export default new Vuex.Store({
 					state.commit('setAuthError', [error.code, 'register']);
 				})
 		}
-  },
+	},
 	getters: {
 		getContacts(state) {
 			return state.contacts;
 		},
+
 		getUserInfo(state) {
 			return state.user
 		},
@@ -153,11 +160,12 @@ export default new Vuex.Store({
 				return state.user.id;
 			}
 		},
+
 		getLoginError(state) {
 			return state.error.login
 		},
 		getRegisterError(state) {
 			return state.error.register;
 		}
-  }
-})
+	}
+});
