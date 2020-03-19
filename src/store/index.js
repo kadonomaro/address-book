@@ -145,6 +145,22 @@ export default new Vuex.Store({
 				.catch((error) => {
 					state.commit('setAuthError', [error.code, 'register']);
 				})
+		},
+
+		updateUserProfile(state, user) {
+			const currentUser = auth.currentUser;
+
+			currentUser.updateProfile({
+				displayName: user.name,
+				photoUrl: user.photo
+			}).catch((error) => {
+				console.warn(error);
+			});
+
+			currentUser.updateEmail(user.email)
+				.catch((error) => {
+					console.warn(error);
+				});
 		}
 	},
 	getters: {
