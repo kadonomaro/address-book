@@ -1,7 +1,7 @@
 <template>
 	<div v-if="getUserInfo" class="user">
 		<div class="user__avatar">
-			<img :src="getUserInfo.avatar || avatar" :alt="getUserInfo.name">
+			<img :src="getUserInfo.photoURL || avatar" :alt="getUserInfo.name">
 		</div>
 		<div class="user__info">
 			<span class="user__name">
@@ -47,6 +47,9 @@ export default {
 			width: 50px;
 			height: 50px;
 			margin-right: 10px;
+			background-color: $background-color;
+			border-radius: 50%;
+			overflow: hidden;
 			img {
 				display: block;
 				max-width: 100%;

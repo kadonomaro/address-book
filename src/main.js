@@ -8,6 +8,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/database';
+import 'firebase/storage';
 
 import YmapPlugin from 'vue-yandex-maps';
 import Paginate from 'vuejs-paginate';
@@ -59,7 +60,8 @@ const yMapSettings = {
 firebase.initializeApp(process.env.NODE_ENV === 'production' ? firebaseProdConfig : firebaseDevConfig);
 const db = firebase.database();
 const auth = firebase.auth();
-export { db, auth };
+const storage = firebase.storage();
+export { db, auth, storage };
 
 Vue.use(YmapPlugin, yMapSettings);
 Vue.component('paginate', Paginate);

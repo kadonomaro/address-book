@@ -3,7 +3,7 @@
 		<article class="user-card">
 			<header class="user-card__header">
 				<div class="user-card__avatar">
-					<img :src="getUserInfo.photoUrl || avatar" :alt="getUserInfo.name">
+					<img :src="getUserInfo.photoURL || avatar" :alt="getUserInfo.name">
 				</div>
 				<h1 class="user-card__name">{{ getUserInfo.name }}</h1>
 				<button class="user-card__button" @click="isModalVisible = true" title="Настроки профиля"></button>
@@ -116,8 +116,10 @@ export default {
 			border-radius: 50%;
 			background-color: $background-color;
 			transform: translateY(50%);
+			overflow: hidden;
 			img {
 				display: block;
+				max-width: 100%;
 				width: 100%;
 				height: 100%;
 				object-fit: cover;

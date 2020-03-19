@@ -1,8 +1,9 @@
 import router from '@/router'
-import { auth } from '@/main';
+import { auth, storage } from '@/main';
 
 export default {
 	state: {
+		photoURL: '',
 		user: {
 			id: null,
 			name: '',
@@ -55,7 +56,7 @@ export default {
 						id: user.uid,
 						name: user.displayName,
 						email: user.email,
-						photoUrl: user.photoUrl,
+						photoURL: user.photoURL,
 						creationTime: currentUser.metadata.creationTime,
 						lastSignInTime: currentUser.metadata.lastSignInTime
 					}
@@ -78,17 +79,32 @@ export default {
 		updateUserProfile(state, user) {
 			const currentUser = auth.currentUser;
 
-			currentUser.updateProfile({
-				displayName: user.name,
-				photoUrl: user.photo
-			}).catch((error) => {
-				console.warn(error);
-			});
+			const fileRef = storage.ref().child('users').child(currentUser.uid).child(`user-${currentUser.uid}-avatar.jpg`);
+			//переделать без вложености
+			fileRef.put(user.photo)
+				.then(() => {
+					fileRef.getDownloadURL()
+						.then((url) => {
+							currentUser.updateProfile({
+								displayName: user.name,
+								photoURL: url
+							})
+								.then(() => {
+									console.log('user profile updated');
+								})
+								.catch((error) => {
+									console.warn(error);
+								});
+						})
+				});
 
-			currentUser.updateEmail(user.email)
+			if (user.email) {
+				currentUser.updateEmail(user.email)
 				.catch((error) => {
 					console.warn(error);
 				});
+			}
+
 		}
 	},
 	getters: {
@@ -110,4 +126,17 @@ export default {
 			return state.error.register;
 		}
 	}
+};
+
+
+async function uploadImage(state, image, userId) {
+	const fileRef = storage.ref()
+		.child('users')
+		.child(userId)
+		.child(`user-${userId}-avatar.jpg`);
+	const uploadTask = await fileRef.put(image);
+	const downloadUrl = await uploadTask.ref.getDownloadURL();
+	state.photoURL = downloadUrl;
+	console.log(state);
+	console.log(downloadUrl);
 };

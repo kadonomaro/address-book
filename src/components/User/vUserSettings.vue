@@ -34,11 +34,7 @@ export default {
 	methods: {
 		updateUserPhoto() {
 			const image = this.$refs.file.files[0];
-			const reader = new FileReader();
-			reader.readAsDataURL(image);
-			reader.onload = (event) => {
-				this.user.photo =  event.target.result;
-			}
+			this.user.photo = image;
 		},
 		emitUserProfile() {
 			this.$emit('on-update', this.user);
