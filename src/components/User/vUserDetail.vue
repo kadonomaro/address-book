@@ -16,11 +16,11 @@
 					</div>
 					<div class="card-info__row">
 						<b>Дата создания аккаунта: </b>
-						{{ getUserInfo.creationTime}}
+						{{ getUserInfo.creationTime | date}}
 					</div>
 					<div class="card-info__row">
 						<b>Дата последнего посещения: </b>
-						{{ getUserInfo.lastSignInTime }}
+						{{ getUserInfo.lastSignInTime | date}}
 					</div>
 				</div>
 			</div>
