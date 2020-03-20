@@ -3,9 +3,7 @@
 .contact-info {
 	position: absolute;
 	z-index: 999;
-	top: 5px;
-	width: 300px;
-	padding: 15px;
+	top: 0;
 	background-color: #ffffff;
 	border: 1px solid $border-color;
 	border-radius: 5px;
@@ -13,38 +11,17 @@
 	cursor: auto;
 	transition: opacity 0.1s ease-in;
 	opacity: 0;
-	&__header {
+	&__inner {
 		display: flex;
-		margin-bottom: 10px;
-	}
-
-	&__footer {
-		display: flex;
-		justify-content: flex-start;
 		padding: 5px;
 		background-color: $background-color;
-		border-radius: 3px;
 	}
-	&__avatar {
-		width: 80px;
-		height: 80px;
-		margin-right: 10px;
-		img {
-			display: block;
-			max-width: 100%;
-		}
-	}
-	.name,
-	.sex,
-	.age {
-		display: block;
-		margin-bottom: 5px;
-	}
+
 	.button {
 		position: relative;
 		width: 35px;
 		height: 35px;
-		margin: 0 2px;
+		margin: 0 5px;
 		padding: 0;
 		text-decoration: none;
 		border-radius: 50%;
@@ -83,7 +60,6 @@
 		}
 	}
 	.button.open {
-		margin-left: auto;
 		background-color: #606060;
 		&:hover {
 			background-color: darken($color: #606060, $amount: 5%);
