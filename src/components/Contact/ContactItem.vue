@@ -114,9 +114,7 @@ export default {
 			this.contact = this.contactHistory;
 		},
 		editContactSave() {
-			this.contact.tags = this.contact.tags.split(',').map((tag) => {
-				return tag.trim();
-			});
+			this.contact.tags = this.contact.tags.split ? this.contact.tags.split(',').map(tag => tag.trim()) : this.contact.tags;
 			this.isEditable = false;
 			this.$store.dispatch('updateContact', this.contact);
 		}
