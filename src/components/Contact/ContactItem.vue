@@ -118,7 +118,7 @@ export default {
 				return tag.trim();
 			});
 			this.isEditable = false;
-			this.$store.dispatch('setContactChange', this.contact);
+			this.$store.dispatch('updateContact', this.contact);
 		}
 	},
 	computed: {

@@ -21,7 +21,7 @@ export default {
 	methods: {
 		getUserInfoFromLocalStorage() {
 			const userInfo = JSON.parse(localStorage.getItem('user_info'));
-			this.$store.commit('setUserInfo', userInfo);
+			this.$store.commit('SET_USER_INFO', userInfo);
 		}
 	},
 	computed: {

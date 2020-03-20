@@ -7,34 +7,26 @@ export default {
 		contacts: [],
 	},
 	mutations: {
-		updateContacts(state, contacts) {
+		UPDATE_CONTACTS(state, contacts) {
 			state.contacts = contacts;
 		},
 
-		updateContact(state, contact) {
+		UPDATE_CONTACT(state, contact) {
 			const contactIndex = state.contacts.map((contact) => {
 				return contact.id;
 			}).indexOf(contact);
 			state.contacts[contactIndex] = contact;
 		},
 
-		addContact(state, contact) {
+		ADD_CONTACT(state, contact) {
 			state.contacts.push(contact);
 		},
 
-		removeContact(state, contact) {
+		REMOVE_CONTACT(state, contact) {
 			const contactIndex = state.contacts.map((contact) => {
 				return contact.id;
 			}).indexOf(contact);
 			state.contacts.splice(contactIndex, 1);
-		},
-
-		setUserInfo(state, data) {
-			state.user = data;
-		},
-
-		setAuthError(state, [error, type]) {
-			state.error[type] = error;
 		}
 	},
 	actions: {
@@ -48,7 +40,7 @@ export default {
 						const contact = child.val();
 						contacts.push(contact);
 					});
-					state.commit('updateContacts', contacts);
+					state.commit('UPDATE_CONTACTS', contacts);
 				});
 		},
 
@@ -57,7 +49,7 @@ export default {
 				.child('contacts')
 				.child(contact.id)
 				.update(contact)
-			state.commit('addContact', contact);
+			state.commit('ADD_CONTACT', contact);
 		},
 
 		deleteContacts(state, contactIdList) {
@@ -69,11 +61,11 @@ export default {
 					.catch((error) => {
 						console.warn('Контакт не существует');
 					});
-				state.commit('removeContact', contactId);
+				state.commit('REMOVE_CONTACT', contactId);
 			});
 		},
 
-		async setContactChange(state, contact) {
+		async updateContact(state, contact) {
 			await db.ref('/users/' + store.state.auth.user.id)
 				.child('contacts')
 				.child(contact.id)
@@ -81,7 +73,7 @@ export default {
 				.catch((error) => {
 					console.warn('Контакт не существует');
 				});
-			state.commit('updateContact', contact);
+			state.commit('UPDATE_CONTACT', contact);
 		},
 	},
 	getters: {

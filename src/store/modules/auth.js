@@ -15,11 +15,11 @@ export default {
 		}
 	},
 	mutations: {
-		setUserInfo(state, data) {
+		SET_USER_INFO(state, data) {
 			state.user = data;
 		},
 
-		setAuthError(state, [error, type]) {
+		SET_AUTH_ERROR(state, [error, type]) {
 			state.error[type] = error;
 		}
 	},
@@ -36,7 +36,7 @@ export default {
 						})
 				})
 				.catch((error) => {
-					state.commit('setAuthError', [error.code, 'register']);
+					state.commit('SET_AUTH_ERROR', [error.code, 'register']);
 				})
 		},
 
@@ -46,7 +46,7 @@ export default {
 					router.push({ name: 'Home' });
 				})
 				.catch((error) => {
-					state.commit('setAuthError', [error.code, 'login'])
+					state.commit('SET_AUTH_ERROR', [error.code, 'login'])
 				});
 
 			auth.onAuthStateChanged((user) => {
@@ -61,7 +61,7 @@ export default {
 						lastSignInTime: currentUser.metadata.lastSignInTime
 					}
 
-					state.commit('setUserInfo', userInfo);
+					state.commit('SET_USER_INFO', userInfo);
 					localStorage.setItem('user_info', JSON.stringify(userInfo));
 				}
 			})
@@ -126,17 +126,4 @@ export default {
 			return state.error.register;
 		}
 	}
-};
-
-
-async function uploadImage(state, image, userId) {
-	const fileRef = storage.ref()
-		.child('users')
-		.child(userId)
-		.child(`user-${userId}-avatar.jpg`);
-	const uploadTask = await fileRef.put(image);
-	const downloadUrl = await uploadTask.ref.getDownloadURL();
-	state.photoURL = downloadUrl;
-	console.log(state);
-	console.log(downloadUrl);
 };
