@@ -1,5 +1,9 @@
 @import '@/style/variables.scss';
 
+.table-wrapper {
+	overflow-x: auto;
+}
+
 .table {
 	width: 100%;
 	border-collapse: collapse;

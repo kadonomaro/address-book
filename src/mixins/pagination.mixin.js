@@ -3,7 +3,7 @@ export default {
     return {
       page: +this.$route.query.page || 1,
       pageSize: 15,
-      pageRange: 1,
+      pageRange: 3,
 			pageCount: 0,
       allItems: [],
       items: []
@@ -16,7 +16,7 @@ export default {
     },
     setupPagination(allItems) {
       this.allItems = allItems.chunk(this.pageSize);
-      this.pageCount = this.allItems.length;
+			this.pageCount = this.allItems.length;
       this.items = this.allItems[this.page - 1] || this.allItems[0];
     }
   }

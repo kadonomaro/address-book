@@ -12,7 +12,7 @@
 				/>
 				<v-button
 					style="margin-left:10px"
-					v-if="contactsIdList.length"
+					v-if="checkedContacts.length"
 					:text="'Удалить'"
 					:has-icon="true"
 					:icon="'minus'"
@@ -21,76 +21,77 @@
 			</div>
 		</div>
 
-
-		<table class="contact-list__table table">
-			<tbody>
-				<tr>
-					<th>№ п/п</th>
-					<th
-						class="sortable"
-						:class="{
-							'up': sortFields.find(field => field.name === 'name').direction === 'up',
-							'down': sortFields.find(field => field.name === 'name').direction === 'down'
-						}"
-						@click="sortBy('name')">Имя
-					</th>
-					<th
-						class="sortable"
-						:class="{
-							'up': sortFields.find(field => field.name === 'phone').direction === 'up',
-							'down': sortFields.find(field => field.name === 'phone').direction === 'down'
-						}"
-						@click="sortBy('phone')">Телефон
-					</th>
-					<th
-						class="sortable"
-						:class="{
-							'up': sortFields.find(field => field.name === 'email').direction === 'up',
-							'down': sortFields.find(field => field.name === 'email').direction === 'down'
-						}"
-						@click="sortBy('email')">E-mail
-					</th>
-					<th
-						class="sortable"
-						:class="{
-							'up': sortFields.find(field => field.name === 'location').direction === 'up',
-							'down': sortFields.find(field => field.name === 'location').direction === 'down'
-						}"
-						@click="sortBy('location')">Адрес
-					</th>
-					<th>Теги</th>
-				</tr>
-				<tr v-for="(contact, index) in items" :key="contact.id">
-					<td>
-						<div class="cell-inner">
-							<span class="title">{{ index + 1 }}</span>
-							<label class="custom-checkbox">
-								<input class="custom-checkbox__input visually-hidden" type="checkbox" :value="contact.id" v-model="contactsIdList">
-								<span class="custom-checkbox__input-custom"></span>
-							</label>
-						</div>
-					</td>
-					<td class="has-info" v-contact-info="contact">{{ contact.name }}</td>
-					<td>
-						<a :href="`tel:${contact.phone}`">{{ contact.phone | phone }}</a>
-					</td>
-					<td>
-						<a :href="`mailto:${contact.email}`">{{ contact.email }}</a>
-					</td>
-					<td>{{ contact.location }}</td>
-					<td>
-						<span
-							:class="{'tag': tag}"
-							v-for="(tag, index) in contact.tags"
-							:key="index"
-						>{{ tag }}</span>
-					</td>
-				</tr>
-				<tr>
-					<td v-if="!filteredData.length && getContacts.length" colspan="6">Ничего не найдено</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="table-wrapper">
+			<table class="contact-list__table table">
+				<tbody>
+					<tr>
+						<th>№ п/п</th>
+						<th
+							class="sortable"
+							:class="{
+								'up': sortFields.find(field => field.name === 'name').direction === 'up',
+								'down': sortFields.find(field => field.name === 'name').direction === 'down'
+							}"
+							@click="sortBy('name')">Имя
+						</th>
+						<th
+							class="sortable"
+							:class="{
+								'up': sortFields.find(field => field.name === 'phone').direction === 'up',
+								'down': sortFields.find(field => field.name === 'phone').direction === 'down'
+							}"
+							@click="sortBy('phone')">Телефон
+						</th>
+						<th
+							class="sortable"
+							:class="{
+								'up': sortFields.find(field => field.name === 'email').direction === 'up',
+								'down': sortFields.find(field => field.name === 'email').direction === 'down'
+							}"
+							@click="sortBy('email')">E-mail
+						</th>
+						<th
+							class="sortable"
+							:class="{
+								'up': sortFields.find(field => field.name === 'location').direction === 'up',
+								'down': sortFields.find(field => field.name === 'location').direction === 'down'
+							}"
+							@click="sortBy('location')">Адрес
+						</th>
+						<th>Теги</th>
+					</tr>
+					<tr v-for="(contact, index) in items" :key="contact.id">
+						<td>
+							<div class="cell-inner">
+								<span class="title">{{ index + 1 }}</span>
+								<label class="custom-checkbox">
+									<input class="custom-checkbox__input visually-hidden" type="checkbox" :value="contact.id" v-model="checkedContacts">
+									<span class="custom-checkbox__input-custom"></span>
+								</label>
+							</div>
+						</td>
+						<td class="has-info" v-contact-info="contact">{{ contact.name }}</td>
+						<td>
+							<a :href="`tel:${contact.phone}`">{{ contact.phone | phone }}</a>
+						</td>
+						<td>
+							<a :href="`mailto:${contact.email}`">{{ contact.email }}</a>
+						</td>
+						<td>{{ contact.location }}</td>
+						<td>
+							<span
+								:class="{'tag': tag}"
+								v-for="(tag, index) in contact.tags"
+								:key="index"
+							>{{ tag }}</span>
+						</td>
+					</tr>
+					<tr>
+						<td v-if="!filteredData.length && getContacts.length" colspan="6">Ничего не найдено</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
 
     <paginate
@@ -158,7 +159,7 @@ export default {
 			filteredData: [],
 			isModalVisible: false,
 			contactForm: {},
-			contactsIdList: [],
+			checkedContacts: [],
 		}
 	},
 	mounted(){
@@ -189,8 +190,8 @@ export default {
 			this.$store.dispatch('addNewContact', this.contactForm);
 		},
 		deleteContacts() {
-			this.$store.dispatch('deleteContacts', this.contactsIdList);
-			this.contactsIdList.length = 0;
+			this.$store.dispatch('deleteContacts', this.checkedContacts);
+			this.checkedContacts.length = 0;
 		}
 	},
 	computed: {

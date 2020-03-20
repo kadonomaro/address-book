@@ -71,8 +71,8 @@ export default {
   }
   &__field {
     width: 100%;
-    padding: 7px 30px 7px 7px;
-    font-size: 16px;
+    padding: 7px 25px 7px 7px;
+    font-size: 14px;
 		border: 2px solid $main-color;
 		border-radius: 3px;
     transition: border-color 0.2s ease;
@@ -87,7 +87,7 @@ export default {
   &__button {
     position: absolute;
     top: 50%;
-    right: 15px;
+    right: 5px;
     width: 25px;
     height: 25px;
     padding: 0;
