@@ -7,7 +7,7 @@
 					type="radio"
 					:name="name"
 					:value="val"
-					@change="onInputHandler"
+					@change="onChangeHandler"
 				>
 				<span class="input-radio-custom"></span>
 				<span class="input-radio-title">{{ val }}</span>
@@ -33,8 +33,8 @@ export default {
 		}
 	},
 	methods: {
-		onInputHandler(evt) {
-			this.$emit('on-input', evt.target.value)
+		onChangeHandler(evt) {
+			this.$emit('on-change', evt.target.value)
 		}
 	}
 }

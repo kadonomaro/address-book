@@ -5,7 +5,7 @@
 			class="input"
 			:type="type"
 			v-autofocus="focus"
-			@change="onInputHandler"
+			@change="onChangeHandler"
 		>
 	</label>
 </template>
@@ -29,8 +29,8 @@ export default {
 		},
 	},
 	methods: {
-		onInputHandler(evt) {
-			this.$emit('on-input',evt.target.value)
+		onChangeHandler(evt) {
+			this.$emit('on-change',evt.target.value)
 		}
 	}
 }
