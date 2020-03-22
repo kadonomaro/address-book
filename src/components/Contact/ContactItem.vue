@@ -35,14 +35,14 @@
 								<input class="user-info__input" v-else type="text" v-model="contact.sex">
 							</label>
             </li>
-            <li class="user-info__item">
+            <li class="user-info__item" v-if="contact.tags[0] || isEditable">
 							<label class="user-info__label">
 								<span class="user-info__title">Статус: </span>
 								<span class="user-info__text" v-if="!isEditable">{{ contact.tags.join(', ') }}</span>
 								<input class="user-info__input" v-else type="text" v-model="contact.tags">
 							</label>
             </li>
-            <li class="user-info__item">
+            <li class="user-info__item" v-if="contact.phone || isEditable">
 							<label class="user-info__label">
 								<span class="user-info__title">Телефон: </span>
 								<span class="user-info__text" v-if="!isEditable">
@@ -51,13 +51,19 @@
 								<input class="user-info__input" v-else type="tel" v-model="contact.phone">
 							</label>
             </li>
-            <li class="user-info__item">
+            <li class="user-info__item" v-if="contact.email || isEditable">
 							<label class="user-info__label">
 								<span class="user-info__title">Электронная почта: </span>
 								<span class="user-info__text" v-if="!isEditable">
 									<a :href="`mailto:${contact.email}`">{{ contact.email }}</a>
 								</span>
 								<input class="user-info__input" v-else type="email" v-model="contact.email">
+							</label>
+            </li>
+						<li v-if="isEditable" class="user-info__item">
+							<label class="user-info__label">
+								<span class="user-info__title">Адрес: </span>
+								<input class="user-info__input" type="text" v-model.lazy="contact.location" :size="contact.location.length">
 							</label>
             </li>
           </ul>

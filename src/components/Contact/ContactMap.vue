@@ -53,7 +53,7 @@ export default {
 			init: false
     };
   },
-  async mounted() {
+  mounted() {
 		this.getCoordByAddress(this.address)
 			.then((response) => {
 				return response.response;
@@ -71,7 +71,19 @@ export default {
 			const data = await response.json();
 			return data;
 		}
-  }
+	},
+	watch: {
+		address(val) {
+			this.getCoordByAddress(val)
+				.then((response) => {
+					return response.response;
+				})
+				.then((position) => {
+					const searchCoords = position.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
+					this.coords = searchCoords.reverse();
+				});
+		}
+	}
 };
 </script>
 
