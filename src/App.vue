@@ -34,7 +34,6 @@ export default {
 
 <style lang="scss">
 	#app {
-		height: 100%;
 		color: #303030;
 		font-family: Roboto, Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;

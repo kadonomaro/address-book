@@ -75,9 +75,6 @@ export default {
 			padding: 10px;
 			background-color: $main-color;
 		}
-		&__map {
-			margin: 0 auto;
-		}
 		&__text {
 			h2 {
 				margin: 0 0 20px;

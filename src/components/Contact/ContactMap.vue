@@ -98,9 +98,15 @@ export default {
 			height: 100%;
 		}
 		&__address {
+			position: absolute;
+			top: 0;
+			left: 50%;
 			display: block;
-			margin: 10px 0;
+			padding: 5px 10px;
+			color: #ffffff;
 			text-align: center;
+			background-color: $main-color;
+			transform: translateX(-50%);
 		}
 	}
 	.contact-map-preloader {
