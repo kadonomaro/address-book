@@ -9,14 +9,12 @@
 </template>
 
 <script>
-import vHeader from '@/components/Blocks/vHeader.vue';
-import vNavigation from '@/components/Blocks/vNavigation.vue';
-import vFooter from '@/components/Blocks/vFooter.vue';
+import vHeader from '@/components/partials/vHeader.vue';
+import vFooter from '@/components/partials/vFooter.vue';
 
 export default {
 	name: 'main-layout',
 	components: {
-		vNavigation,
 		vFooter,
 		vHeader
 	}

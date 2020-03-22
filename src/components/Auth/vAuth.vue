@@ -50,7 +50,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import vLogo from '@/components/Blocks/vLogo.vue';
+import vLogo from '@/components/partials/vLogo.vue';
 import errorList from '@/components/Auth/errorList';
 
 export default {

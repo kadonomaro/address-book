@@ -51,8 +51,8 @@
 import { mapGetters } from 'vuex';
 import { auth } from '@/main';
 import avatar from "@/assets/icons/user.png";
-import vButton from '@/components/Blocks/vButton.vue';
-import vModal from '@/components/Blocks/vModal.vue';
+import vButton from '@/components/blocks/vButton.vue';
+import vModal from '@/components/blocks/vModal.vue';
 import vUserSettings from '@/components/User/vUserSettings.vue';
 
 export default {
@@ -64,7 +64,7 @@ export default {
 	},
 	props: {
 		id: {
-			type: [Number, String	],
+			type: [Number, String],
 			required: true
 		}
 	},

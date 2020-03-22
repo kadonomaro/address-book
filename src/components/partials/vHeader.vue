@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import vNavigation from '@/components/Blocks/vNavigation.vue';
+import vNavigation from '@/components/partials/vNavigation.vue';
 import vUser from '@/components/User/vUser.vue';
 
 export default {

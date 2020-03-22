@@ -14,13 +14,11 @@
 			<span class="user-settings__title">Фотография профиля</span>
 			<v-input-file :title="'Выберите изображение'" :accept="'image/*'" @on-select="updateUserPhoto" />
 		</label>
-
-		<!-- <button @click.prevent="setUserProfileChange">Передать</button> -->
 	</form>
 </template>
 
 <script>
-import vInputFile from '@/components/Blocks/vInputFile.vue';
+import vInputFile from '@/components/blocks/vInputFile.vue';
 
 export default {
 	name: 'v-user-settings',

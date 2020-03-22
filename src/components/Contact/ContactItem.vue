@@ -81,8 +81,8 @@
 <script>
 import { mapGetters } from 'vuex';
 import ContactMap from '@/components/Contact/ContactMap.vue';
-import vPreloader from '@/components/vPreloader.vue';
-import vButton from '@/components/Blocks/vButton.vue';
+import vPreloader from '@/components/partials/vPreloader.vue';
+import vButton from '@/components/blocks/vButton.vue';
 import { db } from "@/main";
 import avatar from "@/assets/icons/user.png";
 

@@ -129,10 +129,10 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import SmartFilter from '@/components/SmartFilter.vue';
-import vButton from '@/components/Blocks/vButton.vue';
-import vModal from '@/components/Blocks/vModal.vue';
-import vPreloader from '@/components/vPreloader.vue';
+import SmartFilter from '@/components/blocks/SmartFilter.vue';
+import vButton from '@/components/blocks/vButton.vue';
+import vModal from '@/components/blocks/vModal.vue';
+import vPreloader from '@/components/partials/vPreloader.vue';
 import AddContactForm from '@/components/Contact/AddContactForm.vue';
 import paginationMixin from '@/mixins/pagination.mixin';
 

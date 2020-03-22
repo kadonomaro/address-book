@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import vInput from '@/components/Blocks/vInput.vue';
-import vInputRadio from '@/components/Blocks/vInputRadio.vue';
+import vInput from '@/components/blocks/vInput.vue';
+import vInputRadio from '@/components/blocks/vInputRadio.vue';
 
 export default {
 	name: 'add-contact-form',

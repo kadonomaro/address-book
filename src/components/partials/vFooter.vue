@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import vLogo from '@/components/Blocks/vLogo.vue';
+import vLogo from '@/components/partials/vLogo.vue';
 
 export default {
 	name: 'v-footer',

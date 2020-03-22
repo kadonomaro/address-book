@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import vButton from '@/components/Blocks/vButton.vue';
+import vButton from '@/components/blocks/vButton.vue';
 
 export default {
   name: 'v-modal',
