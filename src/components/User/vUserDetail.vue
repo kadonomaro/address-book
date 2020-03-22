@@ -40,7 +40,7 @@
         <v-user-settings @on-update="updateUserProfile" />
       </template>
 			<template v-slot:footer>
-        <v-button :text="'ОК'" @on-click="updateUserProfile"/>
+        <v-button :text="'ОК'" @on-click="setUserProfile"/>
       </template>
     </v-modal>
 
@@ -72,11 +72,16 @@ export default {
 		return {
 			avatar,
 			isModalVisible: false,
+			user: {}
 		}
 	},
 	methods: {
-		updateUserProfile(payload) {
-			this.$store.dispatch('updateUserProfile', payload);
+		setUserProfile() {
+			this.$store.dispatch('updateUserProfile', this.user);
+			this.isModalVisible = false;
+		},
+		updateUserProfile(user) {
+			this.user = user;
 		}
 	},
 	computed: {

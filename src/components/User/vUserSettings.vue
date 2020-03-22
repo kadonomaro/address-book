@@ -1,27 +1,32 @@
 <template>
 	<form action="" class="user-settings">
 		<label class="user-settings__label">
-			<span class="user-settings__title">Изменить имя</span>
-			<input class="user-settings__field input" type="text" v-model="user.name">
+			<span class="user-settings__title">Имя</span>
+			<input class="user-settings__field input" type="text" v-model.lazy="user.name">
 		</label>
 
 			<label class="user-settings__label">
-			<span class="user-settings__title">Изменить адрес электронной почты</span>
-			<input class="user-settings__field input" type="email" v-model="user.email">
+			<span class="user-settings__title">Адрес электронной почты</span>
+			<input class="user-settings__field input" type="email" v-model.lazy="user.email">
 		</label>
 
 		<label class="user-settings__label">
-			<span class="user-settings__title">Изменить фотографию профиля</span>
-			<input class="user-settings__field" type="file" accept="image/*"	 ref="file" @change="updateUserPhoto">
+			<span class="user-settings__title">Фотография профиля</span>
+			<v-input-file :title="'Выберите изображение'" :accept="'image/*'" @on-select="updateUserPhoto" />
 		</label>
 
-		<button @click.prevent="emitUserProfile">Передать</button>
+		<!-- <button @click.prevent="setUserProfileChange">Передать</button> -->
 	</form>
 </template>
 
 <script>
+import vInputFile from '@/components/Blocks/vInputFile.vue';
+
 export default {
 	name: 'v-user-settings',
+	components: {
+		vInputFile
+	},
 	data() {
 		return {
 			user: {
@@ -32,14 +37,21 @@ export default {
 		}
 	},
 	methods: {
-		updateUserPhoto() {
-			const image = this.$refs.file.files[0];
+		updateUserPhoto(image) {
 			this.user.photo = image;
 		},
-		emitUserProfile() {
+		setUserProfile() {
 			this.$emit('on-update', this.user);
 		}
 	},
+	watch: {
+		user: {
+			handler(val) {
+				this.setUserProfile();
+			},
+			deep: true
+		}
+	}
 
 }
 </script>
@@ -53,6 +65,8 @@ export default {
 		}
 		&__title {
 			display: block;
+			font-size: 14px;
+			margin-bottom: 3px;
 		}
 		&__field {
 			width: 100%;
