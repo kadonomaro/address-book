@@ -52,7 +52,6 @@ export default {
 		}
 	}
 	.logo--light {
-		border-color: #ffffff;
 		.logo__text {
 			color: #ffffff;
 		}

@@ -1,6 +1,6 @@
 export default {
 	inserted(el, binding) {
-		if (binding.value) {
+		if (binding.value === true) {
 			el.focus();
 		}
   }

@@ -36,5 +36,14 @@
 		display: flex;
 		justify-content: space-between;
 	}
+}
 
+
+@media ($size-mobile) {
+	.table {
+		th,
+		td {
+			padding: 8px 6px;
+		}
+	}
 }

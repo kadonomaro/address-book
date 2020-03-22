@@ -37,4 +37,17 @@ export default {
 			margin-right: auto;
 		}
 	}
+
+
+	@media ($size-mobile) {
+		.header {
+			&__inner {
+				padding: 10px;
+				display: block;
+			}
+			&__navigation {
+				margin-bottom: 20px;
+			}
+		}
+	}
 </style>

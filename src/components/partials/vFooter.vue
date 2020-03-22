@@ -29,11 +29,11 @@ export default {
 	@import '@/style/variables.scss';
 
 	.footer {
-		padding: 20px 30px;
 		background-color: $main-color;
 		&__inner {
 			display: flex;
 			align-items: center;
+			padding: 20px 30px;
 		}
 		&__logo {
 			margin-right: auto;
@@ -49,6 +49,26 @@ export default {
 		}
 		&__link {
 			color: #ffffff;
+		}
+	}
+
+
+	@media ($size-mobile) {
+		.footer {
+			&__inner {
+				padding: 10px;
+			}
+			&__logo {
+				margin-right: 0;
+			}
+			&__list {
+				display: block;
+			}
+			&__item {
+				&:not(:last-child) {
+					margin-bottom: 5px;
+				}
+			}
 		}
 	}
 </style>

@@ -52,13 +52,13 @@ export default {
 		}
 	},
 	methods: {
-		updateFormValue(value, input) {
-			if (input === 'tags') {
+		updateFormValue(value, type) {
+			if (type === 'tags') {
 				value = value.split(',').map((val) => {
 					return val.trim();
 				});
 			}
-			this.form[input] = value;
+			this.form[type] = value;
 			this.$emit('update-info', this.form);
 		}
 	}

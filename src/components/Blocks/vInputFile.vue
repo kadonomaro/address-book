@@ -35,17 +35,17 @@ export default {
 	@import '@/style/variables.scss';
 
 	.input-file-custom {
-		width: 100%;
 		display: inline-block;
+		width: 100%;
 		padding: 5px 8px;
+		color: $text-color;
 		font: inherit;
+		text-align: center;
 		border: 2px solid $border-color;
 		border-radius: 3px;
 		transition: border-color 0.2s ease-in, background-color 0.2s ease-in, color 0.2s ease-in;
 		user-select: none;
 		cursor: pointer;
-		text-align: center;
-		color: $text-color;
 		box-sizing: border-box;
 	}
 	.input-file {

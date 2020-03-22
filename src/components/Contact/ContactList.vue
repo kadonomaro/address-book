@@ -2,7 +2,7 @@
 	<div class="contact-list">
 		<div class="contact-list__head">
 
-			<smart-filter :input-data="getSortedContacts" @filter="filterBy"/>
+			<smart-filter class="contact-list__filter" :input-data="getSortedContacts" @filter="filterBy"/>
 			<div class="contact-list__controls">
 				<v-button
 					:text="'Добавить'"
@@ -288,6 +288,19 @@ export default {
 				cursor: pointer;
 			}
 
+		}
+	}
+
+
+	@media ($size-mobile) {
+		.contact-list {
+			&__head {
+				display: block;
+				padding: 10px;
+			}
+			&__filter {
+				margin-bottom: 10px;
+			}
 		}
 	}
 </style>
