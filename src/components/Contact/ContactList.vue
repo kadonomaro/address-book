@@ -117,12 +117,12 @@
         <add-contact-form @update-info="newContactInfo" />
       </template>
 			<template v-slot:footer>
-        <v-button :text="'ОК'" :disabled="isValidContactForm" @on-click="addContact"/>
+        <v-button :text="'ОК'" :disabled="!isValidContactForm" @on-click="addContact"/>
       </template>
     </v-modal>
 
 
-		<v-preloader v-if="!getContacts.length" :width="60" :height="60" />
+		<v-preloader v-if="getLoadingStatus" :width="60" :height="60" />
 
 	</div>
 </template>
@@ -196,7 +196,8 @@ export default {
 	},
 	computed: {
 		...mapGetters([
-			'getContacts'
+			'getContacts',
+			'getLoadingStatus'
 		]),
 		getSortedContacts() {
 			return this.getContacts.sort((a, b) => {
@@ -205,7 +206,7 @@ export default {
 			});
 		},
 		isValidContactForm() {
-			return this.contactForm.name ? false : true;
+			return this.contactForm.name ? true : false;
 		}
 	},
 	watch: {

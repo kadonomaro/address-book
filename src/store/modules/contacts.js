@@ -5,6 +5,7 @@ import store from '..';
 export default {
 	state: {
 		contacts: [],
+		loading: false
 	},
 	mutations: {
 		UPDATE_CONTACTS(state, contacts) {
@@ -27,11 +28,16 @@ export default {
 				return contact.id;
 			}).indexOf(contact);
 			state.contacts.splice(contactIndex, 1);
+		},
+
+		CHANGE_LOADING_STATUS(state, status) {
+			state.loading = status;
 		}
 	},
 	actions: {
 		async getContactsData(state) {
 			const contacts = [];
+			state.commit('CHANGE_LOADING_STATUS', true);
 			await db.ref('/users/' + store.state.auth.user.id)
 				.child('contacts')
 				.once('value')
@@ -41,6 +47,7 @@ export default {
 						contacts.push(contact);
 					});
 					state.commit('UPDATE_CONTACTS', contacts);
+					state.commit('CHANGE_LOADING_STATUS', false);
 				});
 		},
 
@@ -80,5 +87,8 @@ export default {
 		getContacts(state) {
 			return state.contacts;
 		},
+		getLoadingStatus(state) {
+			return state.loading;
+		}
 	}
 };
