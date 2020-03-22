@@ -11,9 +11,11 @@
 	span.tag {
 		display: inline-block;
 		margin-right: 3px;
+		margin-bottom: 3px;
 		padding: 2px 5px;
 		color: #ffffff;
 		font-size: 14px;
+		white-space: nowrap;
 		background-color: $main-color;
 		border-radius: 10px;
 	}

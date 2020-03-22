@@ -71,10 +71,10 @@
 							</div>
 						</td>
 						<td class="has-info" v-contact-info="contact">{{ contact.name }}</td>
-						<td>
+						<td class="phone">
 							<a :href="`tel:${contact.phone}`">{{ contact.phone | phone }}</a>
 						</td>
-						<td>
+						<td class="email">
 							<a :href="`mailto:${contact.email}`">{{ contact.email }}</a>
 						</td>
 						<td>{{ contact.location }}</td>
@@ -239,6 +239,9 @@ export default {
 			th {
 				position: relative;
 				user-select: none;
+				&:first-child {
+					white-space: nowrap;
+				}
 			}
 			th.sortable {
 				cursor: pointer;
@@ -266,16 +269,24 @@ export default {
 					content: '\2193';
 				}
 			}
+			td {
+				box-sizing: border-box;
+				&:not(:first-child) {
+					width: 20%;
+				}
+				&:first-child {
+					width: 70px;
+				}
+			}
+			td.phone,
+			td.email {
+				white-space: nowrap;
+			}
 			td.has-info {
 				position: relative;
 				cursor: pointer;
 			}
-			td {
-				&:first-child {
-					width: 70px;
-					box-sizing: border-box;
-				}
-			}
+
 		}
 	}
 </style>
