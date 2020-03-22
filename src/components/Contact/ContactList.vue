@@ -4,11 +4,8 @@
 
 			<smart-filter class="contact-list__filter" :input-data="getSortedContacts" @filter="filterBy"/>
 
-			<div class="select">
-				<select name="tags_select">
-					<option value="">Выберите статус</option>
-					<option v-for="(tag, index) in getContactsTags" :value="tag" :key="index">{{ tag }}</option>
-				</select>
+			<div class="contact-list__select">
+				<v-selection-list :list="getContactsTags"/>
 			</div>
 
 			<div class="contact-list__controls">
@@ -140,6 +137,7 @@ import { mapGetters } from 'vuex';
 import SmartFilter from '@/components/blocks/SmartFilter.vue';
 import vButton from '@/components/blocks/vButton.vue';
 import vModal from '@/components/blocks/vModal.vue';
+import vSelectionList from '@/components/blocks/vSelectionList.vue';
 import vPreloader from '@/components/partials/vPreloader.vue';
 import AddContactForm from '@/components/Contact/AddContactForm.vue';
 import paginationMixin from '@/mixins/pagination.mixin';
@@ -151,6 +149,7 @@ export default {
 		vButton,
 		vModal,
 		AddContactForm,
+		vSelectionList,
 		vPreloader
 	},
 	mixins: [paginationMixin],
