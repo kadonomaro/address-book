@@ -23,32 +23,41 @@
           <ul class="user-info__list">
             <li class="user-info__item">
 							<label class="user-info__label">
-								<span class="user-info__field-caption">Возраст: </span>
-								<input class="user-info__field" type="text" v-model="contact.age" :disabled="!isEditable">
+								<span class="user-info__title">Возраст: </span>
+								<span class="user-info__text" v-if="!isEditable">{{ contact.age }}</span>
+								<input class="user-info__input" v-else type="text" v-model="contact.age">
 							</label>
             </li>
             <li class="user-info__item">
 							<label class="user-info__label">
-								<span class="user-info__field-caption">Пол: </span>
-								<input class="user-info__field" type="text" v-model="contact.sex" :disabled="!isEditable">
+								<span class="user-info__title">Пол: </span>
+								<span class="user-info__text" v-if="!isEditable">{{ contact.sex }}</span>
+								<input class="user-info__input" v-else type="text" v-model="contact.sex">
 							</label>
             </li>
             <li class="user-info__item">
 							<label class="user-info__label">
-								<span class="user-info__field-caption">Статус: </span>
-								<input class="user-info__field" type="text" v-model="contact.tags" :disabled="!isEditable">
+								<span class="user-info__title">Статус: </span>
+								<span class="user-info__text" v-if="!isEditable">{{ contact.tags.join(', ') }}</span>
+								<input class="user-info__input" v-else type="text" v-model="contact.tags">
 							</label>
             </li>
             <li class="user-info__item">
 							<label class="user-info__label">
-								<span class="user-info__field-caption">Телефон: </span>
-								<input class="user-info__field" type="text" v-model="contact.phone" :disabled="!isEditable">
+								<span class="user-info__title">Телефон: </span>
+								<span class="user-info__text" v-if="!isEditable">
+									<a :href="`tel:${contact.phone}`">{{ contact.phone | phone }}</a>
+								</span>
+								<input class="user-info__input" v-else type="tel" v-model="contact.phone">
 							</label>
             </li>
             <li class="user-info__item">
 							<label class="user-info__label">
-								<span class="user-info__field-caption">Электронная почта: </span>
-								<input class="user-info__field" type="text" v-model="contact.email" :disabled="!isEditable">
+								<span class="user-info__title">Электронная почта: </span>
+								<span class="user-info__text" v-if="!isEditable">
+									<a :href="`mailto:${contact.email}`">{{ contact.email }}</a>
+								</span>
+								<input class="user-info__input" v-else type="email" v-model="contact.email">
 							</label>
             </li>
           </ul>
@@ -195,10 +204,10 @@ export default {
   &__item {
     margin-bottom: 10px;
   }
-	&__field-caption {
+	&__title {
 		font-weight: bold;
 	}
-	&__field {
+	&__input {
 		padding: 3px 6px;
 		color: $text-color;
 		font: inherit;
@@ -208,12 +217,6 @@ export default {
 		outline: none;
 		&:focus {
 			border-color: $main-color;
-		}
-		&:disabled {
-			color: inherit;
-			font: inherit;
-			background-color: transparent;
-			border: none;
 		}
 	}
 }
