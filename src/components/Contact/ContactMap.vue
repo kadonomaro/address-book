@@ -104,8 +104,10 @@ export default {
 		}
 	}
 	.contact-map-preloader {
+		background-color: #ffffff;
 		background-image: url('~@/assets/yandex-maps-logo.jpg');
-		background-size: cover;
+		background-repeat: no-repeat;
+		background-size: contain 100%;
 		background-position: center;
 	}
 
