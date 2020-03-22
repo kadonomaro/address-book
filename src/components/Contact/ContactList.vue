@@ -3,6 +3,14 @@
 		<div class="contact-list__head">
 
 			<smart-filter class="contact-list__filter" :input-data="getSortedContacts" @filter="filterBy"/>
+
+			<div class="select">
+				<select name="tags_select">
+					<option value="">Выберите статус</option>
+					<option v-for="(tag, index) in getContactsTags" :value="tag" :key="index">{{ tag }}</option>
+				</select>
+			</div>
+
 			<div class="contact-list__controls">
 				<v-button
 					:text="'Добавить'"
@@ -197,6 +205,7 @@ export default {
 	computed: {
 		...mapGetters([
 			'getContacts',
+			'getContactsTags',
 			'getLoadingStatus'
 		]),
 		getSortedContacts() {

@@ -92,4 +92,20 @@ export default {
 			}
 		}
 	}
+
+
+	@media ($size-mobile) {
+		.company {
+			&__title {
+				margin-bottom: 10px;
+			}
+			&__info {
+				display: block;
+			}
+			&__logo {
+				max-width: 120px;
+				margin: 0 auto 10px;
+			}
+		}
+	}
 </style>

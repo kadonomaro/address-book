@@ -87,8 +87,17 @@ export default {
 		getContacts(state) {
 			return state.contacts;
 		},
+
 		getLoadingStatus(state) {
 			return state.loading;
+		},
+
+		getContactsTags(state) {
+			return state.contacts.map((contact) => {
+				return contact.tags;
+			}).flat(1).filter((contact, index, self) => {
+				return self.indexOf(contact) === index && contact;
+			}).sort();
 		}
 	}
 };
