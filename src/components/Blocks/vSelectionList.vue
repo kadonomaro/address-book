@@ -1,7 +1,7 @@
 <template>
 	<div class="selection-list">
 		<select class="selection-list__select" name="selection_list" v-model="selected" @change="onSelectHandler">
-			<option value="">Выберите статус</option>
+			<option v-if="firstCaption" value="">{{ firstCaption }}</option>
 			<option v-for="(item, index) in list" :value="item" :key="index">{{ item }}</option>
 		</select>
 	</div>
@@ -14,6 +14,10 @@ export default {
 		list: {
 			type: Array,
 			required: true
+		},
+		firstCaption: {
+			type: String,
+			required: false
 		}
 	},
 	data() {

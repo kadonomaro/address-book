@@ -55,7 +55,7 @@ export default {
   .modal {
 		position: relative;
 		z-index: 999;
-    min-width: 320px;
+    min-width: 300px;
     max-width: 600px;
 		background: #ffffff;
 		border-radius: 3px;

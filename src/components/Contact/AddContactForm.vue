@@ -76,6 +76,19 @@ export default {
 		}
 		&__field {
 			width: 50%;
+			box-sizing: border-box;
+		}
+	}
+
+
+	@media ($size-mobile) {
+		.add-contact-form {
+			&__group {
+				display: block;
+			}
+			&__field {
+				width: 100%;
+			}
 		}
 	}
 

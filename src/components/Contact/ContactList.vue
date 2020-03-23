@@ -2,10 +2,17 @@
 	<div class="contact-list">
 		<div class="contact-list__head">
 
-			<smart-filter class="contact-list__filter" :input-data="getSortedAndSeletedContacts" @filter="filterBy"/>
+			<smart-filter
+				class="contact-list__filter"
+				:input-data="getSortedAndSeletedContacts"
+				@filter="filterBy"
+			/>
 
 			<div class="contact-list__select">
-				<v-selection-list :list="getContactsTags" @on-select="selectTagHandler"/>
+				<v-selection-list
+					:list="getContactsTags"
+					:first-caption="'Выберите статус клиента'"
+					@on-select="selectTagHandler"/>
 			</div>
 
 			<div class="contact-list__controls">
@@ -63,7 +70,7 @@
 							}"
 							@click="sortBy('location')">Адрес
 						</th>
-						<th>Теги</th>
+						<th>Статус</th>
 					</tr>
 					<tr v-for="(contact, index) in items" :key="contact.id">
 						<td>
