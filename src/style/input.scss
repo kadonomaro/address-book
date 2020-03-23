@@ -14,4 +14,7 @@
 }
 .input--error {
 	border-color: $danger-color;
+	&:focus {
+		border-color: $danger-color;
+	}
 }

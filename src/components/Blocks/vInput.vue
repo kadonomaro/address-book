@@ -3,9 +3,11 @@
 		<span v-if="title" class="input-title">{{ title }}</span>
 		<input
 			class="input"
+			:class="{'input--error': !isValid}"
 			:type="type"
 			v-autofocus="focus"
 			@change="onChangeHandler"
+			@input="checkValidity"
 		>
 	</label>
 </template>
@@ -27,10 +29,24 @@ export default {
 			type: Boolean,
 			required: false
 		},
+		required: {
+			type: Boolean,
+			required: false
+		}
+	},
+	data() {
+		return {
+			isValid: true,
+		}
 	},
 	methods: {
 		onChangeHandler(evt) {
-			this.$emit('on-change',evt.target.value)
+			this.$emit('on-change',evt.target.value);
+		},
+		checkValidity(evt) {
+			if (this.required) {
+				this.isValid = evt.target.value.length;
+			}
 		}
 	}
 }

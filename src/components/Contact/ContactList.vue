@@ -120,7 +120,7 @@
 
 		<v-modal
       v-if="isModalVisible"
-      @close="isModalVisible = false"
+      @close="onCloseModal"
     >
       <template v-slot:header>
         <span>Добавить новый контакт</span>
@@ -199,6 +199,11 @@ export default {
 		selectTagHandler(selected) {
 			this.selectedTag = selected;
 		},
+		onCloseModal() {
+			this.isModalVisible = false;
+			this.contactForm = {}
+		},
+
 		newContactInfo(info) {
 			this.contactForm = info;
 		},
