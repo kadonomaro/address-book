@@ -2,10 +2,10 @@
 	<div class="contact-list">
 		<div class="contact-list__head">
 
-			<smart-filter class="contact-list__filter" :input-data="getSortedContacts" @filter="filterBy"/>
+			<smart-filter class="contact-list__filter" :input-data="getSortedAndSeletedContacts" @filter="filterBy"/>
 
 			<div class="contact-list__select">
-				<v-selection-list :list="getContactsTags"/>
+				<v-selection-list :list="getContactsTags" @on-select="selectTagHandler"/>
 			</div>
 
 			<div class="contact-list__controls">
@@ -167,6 +167,7 @@ export default {
 			isModalVisible: false,
 			contactForm: {},
 			checkedContacts: [],
+			selectedTag: ''
 		}
 	},
 	mounted(){
@@ -188,6 +189,9 @@ export default {
 		filterBy(payload) {
 			this.filteredData = payload;
 		},
+		selectTagHandler(selected) {
+			this.selectedTag = selected;
+		},
 		newContactInfo(info) {
 			this.contactForm = info;
 		},
@@ -207,10 +211,13 @@ export default {
 			'getContactsTags',
 			'getLoadingStatus'
 		]),
-		getSortedContacts() {
+		getSortedAndSeletedContacts() {
 			return this.getContacts.sort((a, b) => {
 				if(a[this.sortProp] < b[this.sortProp]) return -1 * this.sortDirection;
 				if(a[this.sortProp] > b[this.sortProp]) return 1 * this.sortDirection;
+			}).filter((item)=>{
+				if (!this.selectedTag) return item;
+				return item.tags.includes(this.selectedTag);
 			});
 		},
 		isValidContactForm() {
@@ -220,7 +227,7 @@ export default {
 	watch: {
 		filteredData(value) {
 			this.setupPagination(value);
-		}
+		},
 	}
 }
 </script>
@@ -236,12 +243,20 @@ export default {
 		padding: 20px 0;
 		&__head {
 			display: flex;
-			justify-content: space-between;
 			margin-bottom: 20px;
 			padding: 20px 30px;
 			background-color: #ffffff;
 			border: 1px solid $border-color;
 			border-radius: 5px;
+		}
+		&__filter {
+			margin-right: 10px;
+		}
+		&__select {
+			margin-right: 10px;
+		}
+		&__controls {
+			margin-left: auto;
 		}
 		&__table {
 			margin-bottom: 20px;
@@ -307,7 +322,10 @@ export default {
 				padding: 10px;
 			}
 			&__filter {
-				margin-bottom: 10px;
+				margin: 0 0 10px;
+			}
+			&__select {
+				margin: 0 0 10px;
 			}
 		}
 	}
