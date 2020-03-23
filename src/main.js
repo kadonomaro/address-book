@@ -67,7 +67,7 @@ Vue.use(YmapPlugin, yMapSettings);
 Vue.component('paginate', Paginate);
 
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach((to, from, next) => {
 	const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 	if (requiresAuth && !store.getters.getUserId && !localStorage.getItem('user_info')) {
 		next({

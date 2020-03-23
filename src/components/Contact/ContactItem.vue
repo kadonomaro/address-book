@@ -69,7 +69,7 @@
           </ul>
         </div>
 
-				<contact-map v-if="contact.location" :address="contact.location"/>
+				<contact-map class="contact-item__map" v-if="contact.location" :address="contact.location"/>
 
       </div>
     </div>
@@ -196,6 +196,9 @@ export default {
 		padding: 0 20px;
 		margin-right: auto;
 	}
+	&__map {
+		max-width: 100%;
+	}
 	&__button {
 		margin-right: 10px;
 	}
@@ -223,6 +226,40 @@ export default {
 		outline: none;
 		&:focus {
 			border-color: $main-color;
+		}
+	}
+}
+
+
+@media ($size-mobile) {
+	.contact-item {
+		&__toolbar {
+			display: block;
+			padding: 10px;
+		}
+		&__button {
+			display: block;
+			margin: 0;
+			width: 100%;
+			&:not(:last-child) {
+				margin-bottom: 5px;
+			}
+		}
+		&__title,
+		&__title-field {
+			font-size: 18px;
+		}
+		&__body {
+			display: block;
+			margin-bottom: 0;
+		}
+		&__avatar {
+			width: 150px;
+			height: 150px;
+			margin: 0 auto;
+		}
+		&__info {
+			padding: 0;
 		}
 	}
 }
