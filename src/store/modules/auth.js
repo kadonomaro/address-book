@@ -1,5 +1,5 @@
 import router from '@/router'
-import { auth, storage } from '@/main';
+import { db, auth, storage } from '@/main';
 
 export default {
 	state: {
@@ -40,13 +40,13 @@ export default {
 				})
 		},
 
-		login(state, user) {
+		login({ commit, dispatch }, user) {
 			auth.signInWithEmailAndPassword(user.email, user.password)
 				.then((data) => {
 					router.push({ name: 'Home' });
 				})
 				.catch((error) => {
-					state.commit('SET_AUTH_ERROR', [error.code, 'login'])
+					commit('SET_AUTH_ERROR', [error.code, 'login']);
 				});
 
 			auth.onAuthStateChanged((user) => {
@@ -61,7 +61,8 @@ export default {
 						lastSignInTime: currentUser.metadata.lastSignInTime
 					}
 
-					state.commit('SET_USER_INFO', userInfo);
+					dispatch('setUserProfile', userInfo);
+					commit('SET_USER_INFO', userInfo);
 					localStorage.setItem('user_info', JSON.stringify(userInfo));
 				}
 			})
@@ -74,6 +75,12 @@ export default {
 					router.push({ name: 'Login' });
 					localStorage.removeItem('user_info');
 				})
+		},
+
+		setUserProfile({}, user) {
+			db.ref('/users/' + user.id)
+				.child('profile')
+				.update(user)
 		},
 
 		updateUserProfile(state, user) {
